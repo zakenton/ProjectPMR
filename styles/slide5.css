@@ -1,48 +1,69 @@
-/* Стили для Слайда 5: Трехколоночный макет - Активная передача данных */
+/* Специфичный заголовок для 5 слайда */
+.slide5-header {
+    font-size: 1.6rem !important;
+    background: #000 !important;
+    color: var(--accent-green) !important;
+    margin-bottom: 30px;
+}
 
 .info-grid-3 {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 25px;
     width: 100%;
-    margin-top: 30px;
 }
 
 .info-card {
-    background: #fff;
     border: 4px solid #000;
-    padding: 20px;
-    box-shadow: 8px 8px 0px #000;
+    padding: 25px;
+    box-shadow: 10px 10px 0px #000;
     display: flex;
     flex-direction: column;
-    height: 100%;
+    min-height: 350px; /* Чтобы все карточки были одной высоты */
 }
 
-/* Заголовки карточек */
+/* Стили для заголовков внутри карточек */
 .card-title {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     font-weight: bold;
     text-transform: uppercase;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     padding: 5px 10px;
     border: 3px solid #000;
     display: inline-block;
+    background: #fff; /* Всегда белый фон заголовка для контраста */
+    color: #000;
 }
 
-/* Цветовые акценты для карточек */
-.card-pink .card-title { background: var(--accent-pink); }
-.card-yellow .card-title { background: var(--accent-yellow); }
-.card-green .card-title { background: var(--accent-green); }
-.card-blue .card-title { background: #3366FF; color: #fff; }
-.card-orange .card-title { background: #FF6600; color: #fff;}
+/* Цвета для разных карточек */
+.card-blue-dark {
+    background-color: #1a2a6c;
+    color: #fff;
+}
+
+.card-black {
+    background-color: #222;
+    color: #fff;
+}
+
+.card-green-vibrant {
+    background-color: var(--accent-green);
+    color: #000;
+}
 
 .card-text {
     font-size: 1rem;
-    line-height: 1.4;
-    flex-grow: 1; /* Текст занимает оставшееся место */
+    line-height: 1.5;
+    flex-grow: 1;
 }
 
-/* Мобильная адаптация */
+/* Адаптация для мобилок */
 @media (max-width: 900px) {
-    .info-grid-3 { grid-template-columns: 1fr; } /* В одну колонку на телефоне */
+    .info-grid-3 {
+        grid-template-columns: 1fr;
+    }
+    .info-card {
+        min-height: auto;
+        margin-bottom: 20px;
+    }
 }
