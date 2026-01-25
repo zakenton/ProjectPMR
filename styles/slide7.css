@@ -1,0 +1,75 @@
+.game-window {
+    position: relative;
+    border: 5px solid #000;
+    background: #fff;
+    margin-top: 50px;
+    box-shadow: 12px 12px 0px #000;
+}
+
+/* Черная рамка сверху прямоугольника */
+.game-top-bar {
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #000;
+    color: var(--accent-yellow);
+    padding: 5px 30px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border: 3px solid #000;
+}
+
+.game-layout {
+    display: grid;
+    grid-template-columns: 150px 1fr 200px;
+    height: 60vh;
+}
+
+.game-canvas {
+    position: relative;
+    border-left: 4px solid #000;
+    border-right: 4px solid #000;
+    background: #f0f0f0;
+    overflow: hidden; /* Важно, чтобы смайлы не вылезали */
+}
+
+/* АНИМАЦИЯ ПАДЕНИЯ */
+.falling-item {
+    position: absolute;
+    top: -50px;
+    font-size: 3rem;
+    cursor: pointer;
+    user-select: none;
+    animation: itemFall 4s linear forwards;
+}
+
+@keyframes itemFall {
+    0% { top: -60px; }
+    100% { top: 110%; }
+}
+
+.game-bot {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 2rem;
+    font-weight: bold;
+    pointer-events: none;
+}
+
+.game-ui, .game-desc { padding: 20px; display: flex; flex-direction: column; justify-content: center; }
+.pink-bg { background: var(--accent-pink) !important; }
+
+.popper-hidden { display: none; }
+.popper-show {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 10rem;
+    animation: pop 0.5s cubic-bezier(0.17, 0.89, 0.32, 1.49) forwards;
+    z-index: 100;
+}
+
+@keyframes pop { 0% { transform: translate(-50%, -50%) scale(0); } 100% { transform: translate(-50%, -50%) scale(1); } }

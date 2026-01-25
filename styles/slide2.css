@@ -1,0 +1,55 @@
+/* Стили для Слайда 2: Парадокс */
+
+.paradox-wrapper {
+    display: flex;
+    width: 100%;
+    height: 70vh; /* Оставляем место под вопрос внизу */
+    gap: 20px;
+}
+
+.paradox-column {
+    flex: 1;
+    border: 4px solid #000;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    box-shadow: 10px 10px 0px #000;
+}
+
+.serious-blue {
+    background-color: #3366FF; /* Глубокий синий */
+    color: #fff;
+}
+
+.fun-orange {
+    background-color: #FF6600; /* Яркий оранжевый */
+    color: #000;
+}
+
+.paradox-icon {
+    font-size: 4rem;
+    background: #fff;
+    border: 3px solid #000;
+    padding: 10px;
+    margin-bottom: 20px;
+    box-shadow: 4px 4px 0px #000;
+}
+
+.bottom-banner {
+    margin-top: 40px;
+    width: 100%;
+    text-align: center;
+}
+
+.orange-bg { background-color: var(--accent-yellow) !important; color: #000; }
+.pink-bg { background-color: var(--accent-pink) !important; color: #000; }
+
+/* Mobile */
+@media (max-width: 768px) {
+    .paradox-wrapper { flex-direction: column; height: auto; }
+    .paradox-column { padding: 15px; }
+    .paradox-icon { font-size: 2.5rem; }
+}

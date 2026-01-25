@@ -1,6 +1,86 @@
-<div class="highlight-box" style="font-size: 2rem; background: var(--accent-pink);">03. DIGITALE SPUREN</div>
-<div class="info-item">
-    <h3>INHALT</h3>
-    <p>Hier kannst du Informationen über Cookies, Fingerprinting oder Tracker einfügen.</p>
+<div class="slide-inner">
+    <div class="highlight-box">7. ALGORITHMEN-INTERAKTIV</div>
+
+    <div class="game-window">
+        <div class="game-top-bar">INTERAKTIVES SPIEL</div>
+        
+        <div class="game-layout">
+            <div class="game-ui">
+                <div class="info-item">
+                    <h3>SCORE</h3>
+                    <div id="score-val">00 / 10</div>
+                </div>
+                <div class="info-item">
+                    <h3>TARGET</h3>
+                    <div id="target-val">...</div>
+                </div>
+            </div>
+
+            <div class="game-canvas" id="canvas">
+                <div id="popper" class="popper-hidden">🎉</div>
+                <pre id="bot" class="game-bot">[o_o]
+ /|\
+/ | \</pre>
+            </div>
+
+            <div class="game-desc">
+                <div class="info-item pink-bg">
+                    <p><strong>Klicke auf das Target!</strong></p>
+                    <p>So lernt die KI deine Interessen.</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-<div class="sub-highlight">Coming Soon...</div>
+
+<script>
+    // Весь код игры внутри
+    (function() {
+        const items = ['👟', '🍔', '📺', '🎮', '📱', '🍕', '🎸'];
+        let score = 0;
+        let target = '';
+        const canvas = document.getElementById('canvas');
+        const scoreEl = document.getElementById('score-val');
+        const targetEl = document.getElementById('target-val');
+        const bot = document.getElementById('bot');
+
+        function nextTarget() {
+            target = items[Math.floor(Math.random() * items.length)];
+            targetEl.innerText = target;
+        }
+
+        function spawn() {
+            if (score >= 10 || !canvas) return;
+            const el = document.createElement('div');
+            const icon = items[Math.floor(Math.random() * items.length)];
+            el.className = 'falling-item';
+            el.innerText = icon;
+            el.style.left = Math.random() * 80 + 10 + '%';
+            
+            el.onclick = () => {
+                if (icon === target) {
+                    score++;
+                    scoreEl.innerText = score.toString().padStart(2, '0') + " / 10";
+                    bot.innerText = "[^_^]\n /|\\\n/ | \\";
+                    nextTarget();
+                    if (score >= 10) {
+                        document.getElementById('popper').className = 'popper-show';
+                        bot.innerText = "[🔥_🔥]\n \\o/\n  | ";
+                    }
+                } else {
+                    bot.innerText = "[;_;]\n /|\\\n/ | \\";
+                }
+                setTimeout(() => { if(score < 10) bot.innerText = "[o_o]\n /|\\\n/ | \\"; }, 500);
+                el.remove();
+            };
+            canvas.appendChild(el);
+            setTimeout(() => el.remove(), 4000);
+        }
+
+        nextTarget();
+        const loop = setInterval(() => {
+            if (score < 10 && document.getElementById('canvas')) spawn();
+            else clearInterval(loop);
+        }, 800);
+    })();
+</script>

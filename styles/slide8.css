@@ -1,0 +1,145 @@
+/* Основная разметка слайда на две колонки */
+.training-split {
+    display: flex;
+    gap: 40px;
+    margin-top: 40px;
+    height: 65vh;
+    align-items: center;
+}
+
+.visual-container, .text-container {
+    flex: 1;
+    height: 100%;
+}
+
+/* --- СТИЛИ ВИЗУАЛЬНОЙ СЦЕНЫ (СЛЕВА) --- */
+.visual-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.ai-scene {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    background: #fff;
+    border: 4px solid #000;
+    box-shadow: 10px 10px 0px var(--accent-pink);
+    overflow: hidden; /* Чтобы данные исчезали в роботе */
+}
+
+/* Центральный робот */
+.ai-robot {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 5rem;
+    z-index: 10;
+    /* Анимация пульсации (постоянная) */
+    animation: robotPulse 1.5s ease-in-out infinite;
+}
+
+/* Люди вокруг */
+.human-source {
+    position: absolute;
+    font-size: 3rem;
+    z-index: 5;
+    filter: drop-shadow(4px 4px 0px #000);
+}
+
+/* Расположение людей */
+.h1 { top: 10%; left: 10%; } /* Верх-лево */
+.h2 { bottom: 15%; left: 20%; } /* Низ-лево */
+.h3 { top: 30%; right: 10%; } /* Право-центр */
+
+/* Подпись под сценой */
+.scene-label {
+    margin-top: 15px;
+    font-family: monospace;
+    font-weight: bold;
+    background: #000;
+    color: var(--accent-pink);
+    padding: 5px 15px;
+    border: 3px solid #000;
+}
+
+/* --- АНИМАЦИЯ ПОТОКОВ ДАННЫХ --- */
+.data-packet {
+    position: absolute;
+    font-size: 1.5rem;
+    opacity: 0; /* Изначально невидимы */
+    pointer-events: none;
+}
+
+/* Настройка путей для разных групп пакетов */
+
+/* От человека 1 (Верх-лево) к центру */
+.p1 {
+    top: 15%; left: 15%;
+    animation: flowToCenter 2s linear infinite;
+}
+/* Задержки для разных пакетов одной группы, чтобы летели не кучей */
+.p1.d1 { animation-delay: 0s; }
+.p1.d2 { animation-delay: 1s; }
+
+/* От человека 2 (Низ-лево) к центру */
+.p2 {
+    bottom: 20%; left: 25%;
+    animation: flowToCenter 2s linear infinite;
+}
+.p2.d1 { animation-delay: 0.5s; }
+.p2.d2 { animation-delay: 1.5s; }
+
+/* От человека 3 (Право) к центру */
+.p3 {
+    top: 35%; right: 15%;
+    animation: flowToCenterFromRight 2s linear infinite;
+}
+.p3.d1 { animation-delay: 0.2s; }
+.p3.d2 { animation-delay: 1.2s; }
+
+
+/* === КЛЮЧЕВЫЕ КАДРЫ АНИМАЦИЙ === */
+
+/* Пульсация робота */
+@keyframes robotPulse {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); }
+    50% { transform: translate(-50%, -50%) scale(1.2); filter: drop-shadow(0 0 15px var(--accent-pink)); }
+}
+
+/* Движение данных к центру (для левых людей) */
+@keyframes flowToCenter {
+    0% { opacity: 0; transform: translate(0, 0) scale(0.5); }
+    20% { opacity: 1; transform: translate(0, 0) scale(1); }
+    /* Вычисляем путь до центра (примерно 50% - начальная позиция) */
+    100% { opacity: 0; top: 50%; left: 50%; transform: scale(0.2); }
+}
+
+/* Движение данных к центру (для правого человека) */
+@keyframes flowToCenterFromRight {
+    0% { opacity: 0; transform: translate(0, 0) scale(0.5); }
+    20% { opacity: 1; transform: translate(0, 0) scale(1); }
+    100% { opacity: 0; top: 50%; right: 50%; transform: scale(0.2); }
+}
+
+
+/* --- СТИЛИ ТЕКСТА (СПРАВА) --- */
+.text-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* Дополнительный акцент для важного блока */
+.info-item h3 { font-size: 1.1rem; }
+
+/* Мобильная адаптация */
+@media (max-width: 900px) {
+    .training-split { flex-direction: column; height: auto; }
+    .ai-scene { height: 300px; }
+    .ai-robot { font-size: 4rem; }
+    .human-source { font-size: 2.5rem; }
+}
