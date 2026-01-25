@@ -52,7 +52,12 @@
         }
 
         function spawn() {
-            if (score >= 10 || !canvas) return;
+            const canvas = document.getElementById('canvas'); // Ищем заново
+            if (score >= 10 || !canvas) {
+                clearInterval(loop); // Останавливаем игру, если ушли со слайда
+                return;
+            }
+            
             const el = document.createElement('div');
             const icon = items[Math.floor(Math.random() * items.length)];
             el.className = 'falling-item';
