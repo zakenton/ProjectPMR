@@ -1,0 +1,152 @@
+/* Раскладка манифеста */
+.manifesto-layout {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 30px;
+    gap: 20px;
+    height: 45vh; /* Оставляем место под футер */
+}
+
+/* Общий стиль блоков */
+.manifesto-block {
+    flex: 1;
+    height: 100%;
+    padding: 30px;
+    border: 5px solid #000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    box-shadow: 10px 10px 0px rgba(0,0,0,0.3);
+    transition: transform 0.3s;
+}
+
+.manifesto-block:hover {
+    transform: translateY(-5px);
+}
+
+.block-icon {
+    position: absolute;
+    top: -25px;
+    left: 20px;
+    font-size: 3rem;
+    background: #fff;
+    border: 3px solid #000;
+    width: 60px; height: 60px;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 4px 4px 0px #000;
+}
+
+.block-title {
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    border-bottom: 4px solid;
+    display: inline-block;
+    width: 100%;
+}
+
+.block-text {
+    font-size: 1.2rem;
+    line-height: 1.5;
+    font-family: monospace;
+}
+
+/* --- СТИЛИ БЛОКА ПРОБЛЕМЫ --- */
+.block-problem {
+    background: #222;
+    color: #fff;
+    border-color: #000; /* Внешняя рамка черная, но на темном фоне слайда будет ок */
+}
+
+.block-problem .block-title {
+    color: var(--accent-pink);
+    border-color: var(--accent-pink);
+}
+
+.block-problem .block-icon {
+    background: #000; 
+    border-color: #fff;
+}
+
+.highlight-text-dark {
+    background: var(--accent-pink);
+    color: #000;
+    padding: 2px 5px;
+    font-weight: bold;
+}
+
+/* --- СТИЛИ БЛОКА РЕШЕНИЯ --- */
+.block-solution {
+    background: #fff;
+    color: #000;
+    border-color: #000;
+}
+
+.block-solution .block-title {
+    color: #006400;
+    border-color: var(--accent-green);
+    background: var(--accent-green);
+    padding: 5px;
+}
+
+.highlight-text-light {
+    background: var(--accent-yellow);
+    padding: 2px 5px;
+    font-weight: bold;
+    border: 2px solid #000;
+    display: inline-block;
+    transform: rotate(-1deg);
+    margin-top: 10px;
+}
+
+/* Стрелка между блоками */
+.manifesto-arrow {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #000;
+}
+
+/* --- ФИНАЛЬНЫЙ СЛОГАН --- */
+.final-statement-box {
+    margin-top: 40px;
+    width: 100%;
+    background: var(--accent-pink);
+    border: 5px solid #000;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 12px 12px 0px #000;
+    transform: rotate(1deg);
+}
+
+.statement-text {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    font-weight: 900;
+    text-transform: uppercase;
+    line-height: 1.2;
+    color: #000;
+}
+
+.pulse-text {
+    display: inline-block;
+    background: #000;
+    color: var(--accent-green);
+    padding: 0 15px;
+    transform: skewX(-10deg);
+    animation: textPulse 1.5s infinite alternate;
+}
+
+@keyframes textPulse {
+    0% { transform: skewX(-10deg) scale(1); }
+    100% { transform: skewX(-10deg) scale(1.1); box-shadow: 0 0 20px var(--accent-green); }
+}
+
+/* Mobile */
+@media (max-width: 900px) {
+    .manifesto-layout { flex-direction: column; height: auto; }
+    .manifesto-arrow { transform: rotate(90deg); margin: 10px 0; }
+    .manifesto-block { width: 100%; }
+    .final-statement-box { margin-top: 30px; transform: rotate(0deg); }
+}

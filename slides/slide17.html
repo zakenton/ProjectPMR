@@ -1,0 +1,70 @@
+<link rel="stylesheet" href="styles/slide17.css">
+
+<div class="slide-inner">
+    <div class="highlight-box" style="background: var(--accent-pink); font-size: 1.8rem;">
+        7.3. VERSCHLÜSSELUNG
+    </div>
+
+    <div class="comparison-container">
+        
+        <div class="comp-column col-tunnel">
+            <div class="visual-header" style="background: #000; color: var(--accent-green);">
+                🔒 E2EE (SIGNAL, THREEMA)
+            </div>
+            
+            <div class="scene-tunnel">
+                <div class="tunnel-tube">
+                    <div class="tunnel-stream">
+                        >>> SECRET >>> DATA >>> [LOCKED] >>>
+                    </div>
+                </div>
+                <pre class="ascii-lock">
+   .---.
+  /     \
+ |  (o)  |
+  \  |  /
+   '-|-'
+                </pre>
+            </div>
+
+            <div class="desc-box">
+                <h3>DER TUNNEL</h3>
+                <p>
+                    <strong>Ende-zu-Ende:</strong><br>
+                    Nur Sender und Empfänger haben den Schlüssel. Nicht einmal die App (WhatsApp/Signal) kann mitlesen.
+                </p>
+                <div class="badge-safe">✅ EMPFOHLEN</div>
+            </div>
+        </div>
+
+        <div class="vs-badge">VS</div>
+
+        <div class="comp-column col-postcard">
+            <div class="visual-header" style="background: #fff; color: #000; border-bottom: 3px solid #000;">
+                ✉️ STANDARD E-MAIL
+            </div>
+
+            <div class="scene-postcard">
+                <div class="postcard-body">
+                    <div class="stamp">POST</div>
+                    <div class="lines">
+                        <span class="handwriting">Hallo Max!</span><br>
+                        <span class="handwriting">Code: 1234</span><br>
+                        <span class="handwriting">Bis bald!</span>
+                    </div>
+                    <div class="peeping-eye">👁️</div>
+                </div>
+            </div>
+
+            <div class="desc-box">
+                <h3>DIE POSTKARTE</h3>
+                <p>
+                    <strong>Transport-Ebene:</strong><br>
+                    Wie eine Postkarte ohne Umschlag. Jeder Server ("Postbote") auf dem Weg kann den Inhalt lesen.
+                </p>
+                <div class="badge-unsafe">⚠️ UNSICHER</div>
+            </div>
+        </div>
+
+    </div>
+</div>

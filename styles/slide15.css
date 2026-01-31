@@ -1,0 +1,171 @@
+/* Контейнер для сетки */
+.filter-container {
+    display: grid;
+    /* 3 колонки: левая карта, центр (щит), правая карта */
+    grid-template-columns: 1fr 280px 1fr; 
+    /* 2 ряда: верхние карты и нижняя карта */
+    grid-template-rows: auto auto;
+    gap: 20px;
+    width: 100%;
+    margin-top: 30px;
+    align-items: center;
+    justify-items: center;
+}
+
+/* --- КАРТОЧКИ ВОПРОСОВ --- */
+.filter-card {
+    background: #fff;
+    border: 4px solid #000;
+    padding: 15px;
+    box-shadow: 8px 8px 0px #000;
+    width: 100%;
+    max-width: 300px;
+    position: relative;
+    transition: transform 0.2s;
+}
+
+.filter-card:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: 12px 12px 0px #000;
+}
+
+.card-icon {
+    position: absolute;
+    top: -25px;
+    right: -15px;
+    font-size: 2.5rem;
+    background: #fff;
+    border: 3px solid #000;
+    border-radius: 50%;
+    width: 50px; height: 50px;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 3px 3px 0px rgba(0,0,0,0.2);
+}
+
+.card-header {
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    display: inline-block;
+    padding: 2px 8px;
+    border: 2px solid #000;
+}
+
+.filter-card p {
+    font-size: 0.95rem;
+    line-height: 1.3;
+}
+
+/* Цветовые акценты */
+.card-why { 
+    grid-column: 1; grid-row: 1; 
+    border-color: var(--accent-yellow);
+}
+.card-why .card-header { background: var(--accent-yellow); }
+
+.card-future { 
+    grid-column: 3; grid-row: 1; 
+    border-color: var(--accent-pink);
+}
+.card-future .card-header { background: var(--accent-pink); }
+
+.card-who { 
+    grid-column: 2; grid-row: 2; 
+    width: 120%; /* Чуть шире, так как она одна внизу */
+    margin-top: -20px; /* Подтягиваем ближе к щиту */
+    border-color: #3366FF;
+    z-index: 5; /* Поверх щита, если наедет */
+}
+.card-who .card-header { background: #3366FF; color: #fff; }
+
+/* --- ЦЕНТРАЛЬНЫЙ ЩИТ --- */
+.center-visual {
+    grid-column: 2; grid-row: 1;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ascii-shield {
+    font-family: monospace;
+    font-weight: bold;
+    font-size: 1rem;
+    line-height: 1.1;
+    color: #000;
+    z-index: 2;
+    text-align: center;
+    /* Легкая анимация покачивания */
+    animation: shieldFloat 3s ease-in-out infinite;
+}
+
+@keyframes shieldFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+/* Свечение за щитом */
+.shield-glow {
+    position: absolute;
+    width: 150px; height: 150px;
+    background: var(--accent-green);
+    border-radius: 50%;
+    filter: blur(40px);
+    z-index: 1;
+    opacity: 0.5;
+    animation: glowPulse 2s infinite alternate;
+}
+
+@keyframes glowPulse {
+    0% { opacity: 0.3; transform: scale(0.8); }
+    100% { opacity: 0.7; transform: scale(1.1); }
+}
+
+/* --- НИЖНИЙ БАННЕР --- */
+.bottom-decision-bar {
+    margin-top: 40px;
+    width: 100%;
+    background: #000;
+    color: #fff;
+    padding: 15px;
+    text-align: center;
+    border: 4px solid var(--accent-yellow);
+    box-shadow: 8px 8px 0px var(--accent-yellow);
+}
+
+.decision-text {
+    font-size: 1.3rem;
+    font-weight: bold;
+    font-family: monospace;
+}
+
+.blink-text {
+    color: var(--accent-yellow);
+    text-decoration: underline;
+    animation: blink 1s step-end infinite;
+}
+
+@keyframes blink { 50% { opacity: 0; } }
+
+/* Mobile */
+@media (max-width: 900px) {
+    .filter-container {
+        grid-template-columns: 1fr; /* Одна колонка */
+        grid-template-rows: auto;
+        gap: 25px;
+    }
+    
+    /* Сбрасываем позиции сетки для мобилок */
+    .card-why, .card-future, .card-who, .center-visual {
+        grid-column: auto;
+        grid-row: auto;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .card-who { margin-top: 0; }
+    
+    /* Меняем порядок: Щит наверх, потом карточки */
+    .center-visual { order: -1; margin-bottom: 20px; }
+}

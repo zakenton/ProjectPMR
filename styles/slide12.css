@@ -1,0 +1,142 @@
+:root {
+    --brut-purple: #C4B5FD;
+    --brut-yellow: #FFFF00;
+    --brut-black: #000;
+    --brut-red: #FF4444; /* Цвет опасности */
+}
+
+.slide12-container {
+    width: 100%;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    font-family: monospace;
+}
+
+.slide12-header {
+    background: var(--brut-black);
+    color: var(--brut-yellow);
+    font-size: 1.8rem;
+    padding: 10px 20px;
+    border: 4px solid var(--brut-black);
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    width: fit-content;
+    box-shadow: 6px 6px 0px var(--brut-red);
+}
+
+/* Основная рабочая область */
+.anatomy-layout {
+    flex-grow: 1;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Макет Фишингового Письма */
+.phishing-email-box {
+    width: 60%;
+    max-width: 600px;
+    background: #fff;
+    border: 4px solid var(--brut-black);
+    box-shadow: 10px 10px 0px rgba(0,0,0,0.2);
+    z-index: 2;
+    position: relative;
+}
+
+.email-window-bar {
+    background: #ccc;
+    padding: 5px 10px;
+    border-bottom: 2px solid #000;
+    display: flex;
+    gap: 5px;
+}
+.win-dot { width: 12px; height: 12px; border-radius: 50%; border: 2px solid #000; }
+.wd-r { background: var(--brut-red); } .wd-y { background: var(--brut-yellow); } .wd-g { background: #00FF88; }
+
+.email-header {
+    padding: 15px;
+    background: #f9f9f9;
+    border-bottom: 2px solid #eee;
+    font-size: 0.9rem;
+}
+.email-row span:first-child { font-weight: bold; color: #666; margin-right: 10px; }
+
+/* Трюки в письме */
+.fake-sender { color: var(--brut-red); text-decoration: underline wavy var(--brut-red); }
+.personal-data { background: var(--brut-yellow); padding: 2px 5px; border: 2px solid #000; }
+
+.email-body {
+    padding: 20px;
+    line-height: 1.5;
+}
+.urgent-text { font-weight: bold; color: var(--brut-red); }
+
+.phish-button {
+    display: block;
+    width: fit-content;
+    margin: 20px auto 0;
+    padding: 10px 20px;
+    background: var(--brut-red);
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    border: 3px solid #000;
+    box-shadow: 4px 4px 0px #000;
+    animation: pulseBtn 1s infinite alternate;
+}
+@keyframes pulseBtn { from { transform: scale(1); } to { transform: scale(1.05); } }
+
+/* --- ВЫНОСКИ (CALL-OUTS) --- */
+.callout {
+    position: absolute;
+    background: var(--brut-black);
+    color: #fff;
+    padding: 10px;
+    border: 3px solid var(--brut-red);
+    max-width: 200px;
+    font-size: 0.85rem;
+    z-index: 3;
+    box-shadow: 5px 5px 0px rgba(255, 68, 68, 0.5);
+}
+
+.callout h4 {
+    color: var(--brut-red);
+    margin: 0 0 5px 0;
+    text-transform: uppercase;
+    font-size: 1rem;
+}
+
+/* Позиционирование выносок и стрелки */
+.c-sender { top: 10%; left: 5%; }
+.c-sender::after { content: "→"; position: absolute; right: -30px; top: 50%; color: var(--brut-red); font-size: 2rem; }
+
+.c-name { top: 25%; right: 5%; }
+.c-name::before { content: "←"; position: absolute; left: -30px; top: 50%; color: var(--brut-red); font-size: 2rem; }
+
+.c-urgency { bottom: 30%; left: 5%; }
+.c-urgency::after { content: "→"; position: absolute; right: -30px; top: 50%; color: var(--brut-red); font-size: 2rem; }
+
+.c-link { bottom: 10%; right: 5%; }
+.c-link::before { content: "←"; position: absolute; left: -30px; top: 20%; color: var(--brut-red); font-size: 2rem; }
+
+/* Вердикт внизу */
+.verdict-box {
+    margin-top: auto;
+    background: #fff;
+    border: 4px solid var(--brut-black);
+    padding: 15px;
+    text-align: center;
+    font-size: 1.1rem;
+}
+.verdict-box strong { background: var(--brut-yellow); padding: 2px 8px; border: 2px solid #000;}
+
+/* Mobile view */
+@media (max-width: 900px) {
+    .phishing-email-box { width: 90%; font-size: 0.8rem; }
+    .callout { position: relative; max-width: 100%; margin: 10px 0; left: auto !important; right: auto !important; top: auto !important; bottom: auto !important;}
+    .callout::after, .callout::before { display: none; }
+    .anatomy-layout { flex-direction: column; }
+}

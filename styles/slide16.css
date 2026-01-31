@@ -1,0 +1,121 @@
+/* Сетка инвентаря */
+.inventory-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    width: 100%;
+    margin-top: 10px;
+    height: 60vh; /* Фиксируем высоту для выравнивания */
+}
+
+/* Карточка предмета */
+.inv-card {
+    background: #fff;
+    border: 4px solid #000;
+    box-shadow: 8px 8px 0px #000;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s;
+    overflow: hidden;
+}
+
+.inv-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 12px 12px 0px #000;
+}
+
+/* Цветовые темы */
+.card-green { border-color: #000; }
+.card-green .inv-header { background: var(--accent-green); }
+.card-green .inv-icon { color: #004d00; background: #ccffcc; }
+
+.card-yellow { border-color: #000; }
+.card-yellow .inv-header { background: var(--accent-yellow); }
+.card-yellow .inv-icon { color: #554400; background: #fffbe6; }
+
+.card-blue { border-color: #000; }
+.card-blue .inv-header { background: #3366FF; color: #fff; }
+.card-blue .inv-icon { color: #000080; background: #e6f0ff; }
+
+/* Заголовок карточки */
+.inv-header {
+    padding: 10px;
+    border-bottom: 4px solid #000;
+    font-family: monospace;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.lvl { font-size: 0.8rem; opacity: 0.7; }
+.name { font-size: 1.1rem; text-transform: uppercase; }
+
+/* Иконка (ASCII) */
+.inv-icon {
+    flex: 1; /* Занимает доступное пространство */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: monospace;
+    font-size: 1.2rem; /* Размер ASCII арта */
+    font-weight: bold;
+    padding: 20px 0;
+    border-bottom: 4px solid #000;
+}
+
+.inv-icon pre {
+    line-height: 1.1;
+    text-align: center;
+}
+
+/* Описание (Stats) */
+.inv-stats {
+    padding: 15px;
+    background: #fff;
+    font-size: 0.9rem;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Pro Tip Box */
+.pro-tip {
+    margin-top: auto; /* Прижимает к низу */
+    background: #000;
+    color: #fff;
+    padding: 8px;
+    font-size: 0.8rem;
+    font-family: monospace;
+    border: 2px dashed #555;
+}
+
+.tip-label {
+    color: var(--accent-yellow);
+    font-weight: bold;
+    display: block;
+    margin-bottom: 3px;
+}
+
+/* Анимация кода 2FA */
+.code-anim {
+    animation: glitchText 3s infinite steps(1);
+}
+
+@keyframes glitchText {
+    0% { content: "392 018"; }
+    25% { transform: skewX(2deg); }
+    50% { content: "882 192"; transform: skewX(-2deg); }
+    75% { transform: skewX(1deg); }
+    100% { content: "392 018"; transform: skewX(0deg); }
+}
+
+/* Mobile */
+@media (max-width: 900px) {
+    .inventory-grid {
+        grid-template-columns: 1fr; /* Одна колонка */
+        height: auto;
+    }
+    .inv-card { margin-bottom: 20px; }
+    .inv-icon { padding: 10px 0; font-size: 1rem; }
+}

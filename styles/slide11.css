@@ -1,0 +1,174 @@
+:root {
+    --brut-purple: #C4B5FD;
+    --brut-yellow: #FFFF00;
+    --brut-green: #00FF88;
+    --brut-black: #000;
+    --brut-red: #FF4444; /* Для акцента на атаке */
+}
+
+.slide11-container {
+    width: 100%;
+    height: 75vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.slide11-header {
+    background: var(--brut-black);
+    color: #fff; /* Белый текст на черном для контраста с прошлым слайдом */
+    font-size: 1.8rem;
+    padding: 10px 20px;
+    border: 4px solid var(--brut-black);
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    width: fit-content;
+    box-shadow: 6px 6px 0px var(--brut-purple);
+}
+
+/* Контейнер воронки */
+.funnel-flow {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    gap: 10px;
+    flex-grow: 1;
+    width: 100%;
+}
+
+/* Стрелки между блоками */
+.flow-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: monospace;
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--brut-black);
+    user-select: none;
+    animation: pulseArrow 1.5s infinite;
+}
+
+@keyframes pulseArrow {
+    0%, 100% { transform: translateX(0); opacity: 0.5; }
+    50% { transform: translateX(5px); opacity: 1; }
+}
+
+/* Карточки этапов */
+.flow-card {
+    flex: 1;
+    border: 4px solid var(--brut-black);
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 8px 8px 0px rgba(0,0,0,0.2);
+    transition: transform 0.2s;
+}
+
+.flow-card:hover {
+    transform: translate(-4px, -4px);
+    box-shadow: 12px 12px 0px rgba(0,0,0,0.2);
+}
+
+/* Шапка карточки */
+.fc-header {
+    padding: 10px;
+    border-bottom: 4px solid var(--brut-black);
+    font-weight: bold;
+    font-size: 1.1rem;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+/* Цвета шапок */
+.bg-yellow { background: var(--brut-yellow); }
+.bg-purple { background: var(--brut-purple); }
+.bg-dark { background: var(--brut-black); color: #fff; }
+
+/* Визуальная зона (ASCII) */
+.fc-visual {
+    flex: 1; /* Занимает доступное место */
+    background: #f4f4f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 4px solid var(--brut-black);
+    overflow: hidden;
+    position: relative;
+    min-height: 150px;
+}
+
+.ascii-art {
+    font-family: monospace;
+    font-size: 0.8rem; /* Чуть меньше шрифт для сложных рисунков */
+    line-height: 1.1;
+    white-space: pre;
+    z-index: 2;
+}
+
+/* Текстовая зона */
+.fc-text {
+    padding: 15px;
+    background: #fff;
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
+.fc-text strong {
+    display: block;
+    margin-bottom: 5px;
+    text-decoration: underline decoration-thickness 2px;
+}
+
+/* --- Анимации для каждого блока --- */
+
+/* 1. Spray Effect */
+.spray-particle {
+    position: absolute;
+    width: 4px; height: 4px;
+    background: var(--brut-black);
+    border-radius: 50%;
+    opacity: 0;
+    animation: sprayMove 1s linear infinite;
+}
+.sp1 { top: 40%; left: 60%; animation-delay: 0s; }
+.sp2 { top: 45%; left: 60%; animation-delay: 0.2s; }
+.sp3 { top: 35%; left: 60%; animation-delay: 0.4s; }
+
+@keyframes sprayMove {
+    0% { transform: translate(0, 0); opacity: 1; }
+    100% { transform: translate(40px, 20px) scale(0); opacity: 0; }
+}
+
+/* 2. Database Leak */
+.db-data {
+    position: absolute;
+    color: var(--brut-red);
+    font-family: monospace;
+    font-size: 0.8rem;
+    font-weight: bold;
+    animation: dropData 2s linear infinite;
+}
+@keyframes dropData {
+    0% { top: 50%; opacity: 1; }
+    100% { top: 120%; opacity: 0; }
+}
+
+/* 3. Darknet Money */
+.money-symbol {
+    position: absolute;
+    top: 20%; right: 20%;
+    font-size: 1.5rem;
+    color: var(--brut-green);
+    animation: floatMoney 2s ease-in-out infinite alternate;
+}
+@keyframes floatMoney {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-10px); }
+}
+
+/* Mobile */
+@media (max-width: 900px) {
+    .funnel-flow { flex-direction: column; height: auto; }
+    .flow-arrow { transform: rotate(90deg); margin: 10px 0; }
+    .slide11-container { height: auto; }
+}
