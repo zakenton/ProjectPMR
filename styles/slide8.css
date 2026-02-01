@@ -1,145 +1,223 @@
-/* Основная разметка слайда на две колонки */
-.training-split {
+/* --- СЕТКА --- */
+.editorial-grid {
     display: flex;
     gap: 40px;
-    margin-top: 40px;
-    height: 65vh;
-    align-items: center;
+    margin-top: 20px;
+    align-items: stretch;
+    height: 60vh;
 }
 
-.visual-container, .text-container {
-    flex: 1;
-    height: 100%;
-}
-
-/* --- СТИЛИ ВИЗУАЛЬНОЙ СЦЕНЫ (СЛЕВА) --- */
-.visual-container {
+.visual-column {
+    flex: 1.2;
     display: flex;
     flex-direction: column;
-    align-items: center;
 }
 
-.ai-scene {
-    position: relative;
-    width: 100%;
-    height: 400px;
-    background: #fff;
-    border: 4px solid #000;
-    box-shadow: 10px 10px 0px var(--accent-pink);
-    overflow: hidden; /* Чтобы данные исчезали в роботе */
-}
-
-/* Центральный робот */
-.ai-robot {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 5rem;
-    z-index: 10;
-    /* Анимация пульсации (постоянная) */
-    animation: robotPulse 1.5s ease-in-out infinite;
-}
-
-/* Люди вокруг */
-.human-source {
-    position: absolute;
-    font-size: 3rem;
-    z-index: 5;
-    filter: drop-shadow(4px 4px 0px #000);
-}
-
-/* Расположение людей */
-.h1 { top: 10%; left: 10%; } /* Верх-лево */
-.h2 { bottom: 15%; left: 20%; } /* Низ-лево */
-.h3 { top: 30%; right: 10%; } /* Право-центр */
-
-/* Подпись под сценой */
-.scene-label {
-    margin-top: 15px;
-    font-family: monospace;
-    font-weight: bold;
-    background: #000;
-    color: var(--accent-pink);
-    padding: 5px 15px;
-    border: 3px solid #000;
-}
-
-/* --- АНИМАЦИЯ ПОТОКОВ ДАННЫХ --- */
-.data-packet {
-    position: absolute;
-    font-size: 1.5rem;
-    opacity: 0; /* Изначально невидимы */
-    pointer-events: none;
-}
-
-/* Настройка путей для разных групп пакетов */
-
-/* От человека 1 (Верх-лево) к центру */
-.p1 {
-    top: 15%; left: 15%;
-    animation: flowToCenter 2s linear infinite;
-}
-/* Задержки для разных пакетов одной группы, чтобы летели не кучей */
-.p1.d1 { animation-delay: 0s; }
-.p1.d2 { animation-delay: 1s; }
-
-/* От человека 2 (Низ-лево) к центру */
-.p2 {
-    bottom: 20%; left: 25%;
-    animation: flowToCenter 2s linear infinite;
-}
-.p2.d1 { animation-delay: 0.5s; }
-.p2.d2 { animation-delay: 1.5s; }
-
-/* От человека 3 (Право) к центру */
-.p3 {
-    top: 35%; right: 15%;
-    animation: flowToCenterFromRight 2s linear infinite;
-}
-.p3.d1 { animation-delay: 0.2s; }
-.p3.d2 { animation-delay: 1.2s; }
-
-
-/* === КЛЮЧЕВЫЕ КАДРЫ АНИМАЦИЙ === */
-
-/* Пульсация робота */
-@keyframes robotPulse {
-    0%, 100% { transform: translate(-50%, -50%) scale(1); }
-    50% { transform: translate(-50%, -50%) scale(1.2); filter: drop-shadow(0 0 15px var(--accent-pink)); }
-}
-
-/* Движение данных к центру (для левых людей) */
-@keyframes flowToCenter {
-    0% { opacity: 0; transform: translate(0, 0) scale(0.5); }
-    20% { opacity: 1; transform: translate(0, 0) scale(1); }
-    /* Вычисляем путь до центра (примерно 50% - начальная позиция) */
-    100% { opacity: 0; top: 50%; left: 50%; transform: scale(0.2); }
-}
-
-/* Движение данных к центру (для правого человека) */
-@keyframes flowToCenterFromRight {
-    0% { opacity: 0; transform: translate(0, 0) scale(0.5); }
-    20% { opacity: 1; transform: translate(0, 0) scale(1); }
-    100% { opacity: 0; top: 50%; right: 50%; transform: scale(0.2); }
-}
-
-
-/* --- СТИЛИ ТЕКСТА (СПРАВА) --- */
-.text-container {
+.text-column {
+    flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 20px;
 }
 
-/* Дополнительный акцент для важного блока */
-.info-item h3 { font-size: 1.1rem; }
+/* --- ЗАГОЛОВОК --- */
+.main-title {
+    margin-top: 20px;
+    margin-bottom: 30px;
+    line-height: 1;
+}
 
-/* Мобильная адаптация */
+.helvetica-part {
+    font-family: var(--font-helvetica);
+    font-weight: bold;
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.serif-part {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 5rem;
+    color: #000;
+}
+
+/* --- ВИЗУАЛЬНАЯ СЦЕНА (Анимация) --- */
+.scene-wrapper {
+    flex: 1;
+    background: #fcfcfc;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Центральный элемент (Робот) */
+.center-ai {
+    font-size: 5rem;
+    z-index: 10;
+    animation: pulseAI 2s infinite ease-in-out;
+    filter: drop-shadow(0 0 10px rgba(0,0,0,0.1));
+}
+
+@keyframes pulseAI {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+/* Источники (Люди) */
+.human-source {
+    position: absolute;
+    font-size: 2.5rem;
+    z-index: 5;
+    opacity: 0.8;
+}
+
+.h-top-left { top: 15%; left: 15%; }
+.h-bottom-left { bottom: 15%; left: 15%; }
+.h-right { top: 50%; right: 15%; transform: translateY(-50%); }
+
+/* Пакеты данных */
+.data-packet {
+    position: absolute;
+    font-size: 1.5rem;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* Анимации движения к центру */
+/* От верха-слева */
+.p1 { top: 15%; left: 15%; animation: moveCenterTL 2.5s linear infinite; }
+.p1.d1 { animation-delay: 0s; }
+.p1.d2 { animation-delay: 1.2s; }
+
+/* От низа-слева */
+.p2 { bottom: 15%; left: 15%; animation: moveCenterBL 2.5s linear infinite; }
+.p2.d1 { animation-delay: 0.5s; }
+.p2.d2 { animation-delay: 1.8s; }
+
+/* От центра-справа */
+.p3 { top: 50%; right: 15%; animation: moveCenterR 2.5s linear infinite; }
+.p3.d1 { animation-delay: 0.8s; }
+.p3.d2 { animation-delay: 2.0s; }
+
+@keyframes moveCenterTL {
+    0% { opacity: 0; transform: translate(0,0) scale(0.5); }
+    20% { opacity: 1; transform: translate(0,0) scale(1); }
+    100% { opacity: 0; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.2); }
+}
+
+@keyframes moveCenterBL {
+    0% { opacity: 0; transform: translate(0,0) scale(0.5); }
+    20% { opacity: 1; transform: translate(0,0) scale(1); }
+    100% { opacity: 0; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.2); }
+}
+
+@keyframes moveCenterR {
+    0% { opacity: 0; transform: translate(0,-50%) scale(0.5); }
+    20% { opacity: 1; transform: translate(0,-50%) scale(1); }
+    100% { opacity: 0; top: 50%; right: 50%; transform: translate(50%, -50%) scale(0.2); }
+}
+
+.scene-caption-tag {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    background: #000;
+    color: #fff;
+    padding: 2px 8px;
+    border-radius: 4px;
+}
+
+
+/* --- ТЕКСТОВЫЙ БЛОК --- */
+.info-block {
+    padding: 35px;
+    background: #fff;
+    border: 1px solid #000;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+}
+
+.content-text {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 2rem;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    color: #000;
+}
+
+.text-section {
+    margin-bottom: 15px;
+}
+
+.mini-header {
+    font-family: var(--font-helvetica);
+    font-size: 0.9rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.content-desc {
+    font-family: var(--font-arial);
+    font-size: 1.1rem;
+    line-height: 1.5;
+    color: #333;
+}
+
+.divider-line {
+    width: 100%; height: 1px; background: #000; opacity: 0.1; margin: 20px 0;
+}
+
+.pill-yellow-border {
+    background: #fff;
+    border: 1px solid var(--accent-yellow);
+    color: #000;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    padding: 6px 15px;
+    box-shadow: 3px 3px 0px var(--accent-yellow);
+    display: inline-block;
+    margin-bottom: 15px;
+    font-weight: bold;
+    align-self: flex-start;
+}
+
+.highlight-marker {
+    background: linear-gradient(120deg, var(--accent-yellow) 0%, var(--accent-yellow) 100%);
+    background-size: 100% 30%;
+    background-repeat: no-repeat;
+    background-position: 0 85%;
+    display: inline;
+}
+
+/* Декор точек */
+.corner-dot {
+    position: absolute;
+    width: 6px; height: 6px;
+    background: #000;
+    border-radius: 50%;
+}
+.tl { top: -3px; left: -3px; }
+.tr { top: -3px; right: -3px; }
+.bl { bottom: -3px; left: -3px; }
+.br { bottom: -3px; right: -3px; }
+
+/* Mobile */
 @media (max-width: 900px) {
-    .training-split { flex-direction: column; height: auto; }
-    .ai-scene { height: 300px; }
-    .ai-robot { font-size: 4rem; }
-    .human-source { font-size: 2.5rem; }
+    .editorial-grid { flex-direction: column; height: auto; }
+    .scene-wrapper { height: 400px; }
+    .serif-part { font-size: 3.5rem; }
 }

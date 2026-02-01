@@ -1,4 +1,177 @@
-/* Стили для Слайда 3: Парадокс (дополнительные стили) */
+/* --- СЕТКА --- */
+.editorial-grid {
+    display: flex;
+    gap: 40px;
+    margin-top: 20px; /* Чуть меньше отступ сверху, чтобы влез крупный текст */
+    align-items: stretch; 
+    height: 65vh; /* Фиксируем высоту для выравнивания */
+}
 
-/* Базовые стили для slide-grid, info-item, choice-scene, ascii-human уже в base.css */
-/* Здесь можно добавить специфичные стили для слайда 3, если потребуется */
+.text-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 30px; /* Больше отступ между блоками */
+}
+
+.visual-column {
+    flex: 1;
+}
+
+/* --- ЗАГОЛОВОК (УВЕЛИЧЕН) --- */
+.main-title {
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+.serif-part {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 5.5rem; /* Было 4rem, стало намного крупнее */
+    line-height: 1;
+    color: #000;
+}
+
+/* --- ТЕКСТОВЫЕ БЛОКИ (УВЕЛИЧЕНЫ) --- */
+.info-block {
+    padding: 35px; /* Больше воздуха внутри */
+    background: #fff;
+    transition: transform 0.2s;
+    border: 1px solid #000;
+    position: relative;
+    box-shadow: 8px 8px 0px rgba(0,0,0,0.05); /* Тень чуть заметнее */
+}
+
+.info-block:hover {
+    transform: translateX(5px);
+    box-shadow: 12px 12px 0px rgba(0,0,0,0.1);
+}
+
+.content-text {
+    font-family: var(--font-arial);
+    font-size: 1.9rem; /* ЗНАЧИТЕЛЬНО КРУПНЕЕ (Было 1.4rem) */
+    line-height: 1.3;
+    margin-top: 20px;
+    color: #111;
+    font-weight: 400;
+}
+
+/* Таблетки внутри блоков тоже чуть крупнее */
+.pill-purple-border, .pill-yellow-border {
+    font-size: 1rem;
+    padding: 5px 15px;
+}
+
+/* Стили таблеток (без изменений логики) */
+.pill-purple-border {
+    background: #fff;
+    border: 1px solid var(--accent-purple);
+    color: #000;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 3px 3px 0px var(--accent-purple);
+    display: inline-block;
+}
+
+.pill-yellow-border {
+    background: #fff;
+    border: 1px solid var(--accent-yellow);
+    color: #000;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 3px 3px 0px var(--accent-yellow);
+    display: inline-block;
+}
+
+.highlight-marker {
+    background: linear-gradient(120deg, var(--accent-purple) 0%, var(--accent-purple) 100%);
+    background-size: 100% 30%;
+    background-repeat: no-repeat;
+    background-position: 0 85%;
+    display: inline;
+}
+
+.info-block:last-child .highlight-marker {
+    background-image: linear-gradient(120deg, var(--accent-yellow) 0%, var(--accent-yellow) 100%);
+}
+
+
+/* --- ВИЗУАЛЬНАЯ СЦЕНА --- */
+.scene-box {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background: #fafafa;
+    padding-bottom: 20px;
+}
+
+.terminal-header {
+    width: 100%;
+    font-family: 'Courier New', monospace;
+    font-size: 1rem; /* Чуть крупнее */
+    color: #666;
+    border-bottom: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.status-dot {
+    display: inline-block;
+    width: 10px; height: 10px;
+    background: var(--accent-green);
+    border-radius: 50%;
+    margin-right: 8px;
+    animation: blink 2s infinite;
+}
+
+@keyframes blink { 50% { opacity: 0.3; } }
+
+.ascii-art-styled {
+    font-family: monospace;
+    font-size: 3.5rem; /* УВЕЛИЧИЛ ASCII АРТ */
+    line-height: 1.1;
+    color: #000;
+    text-align: center;
+    font-weight: bold;
+    animation: floatASCII 4s ease-in-out infinite;
+}
+
+@keyframes floatASCII {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+
+.code-caption {
+    width: 100%;
+    font-family: 'Courier New', monospace;
+    font-size: 1.2rem; /* Увеличил подпись кода */
+    margin-top: 20px;
+    border-top: 1px solid #ddd;
+    padding-top: 20px;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* Декоративные точки */
+.corner-dot {
+    position: absolute;
+    width: 8px; height: 8px;
+    background: #000;
+    border-radius: 50%;
+}
+.tl { top: -4px; left: -4px; }
+.tr { top: -4px; right: -4px; }
+.bl { bottom: -4px; left: -4px; }
+.br { bottom: -4px; right: -4px; }
+
+
+/* --- МОБИЛЬНАЯ АДАПТАЦИЯ --- */
+@media (max-width: 900px) {
+    .editorial-grid { flex-direction: column; height: auto; }
+    .scene-box { min-height: 350px; }
+    .serif-part { font-size: 3.5rem; }
+    .content-text { font-size: 1.4rem; }
+}

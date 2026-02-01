@@ -1,52 +1,71 @@
 <link rel="stylesheet" href="styles/slide10.css">
 
-<div class="slide-inner slide10-container">
-    <div class="slide10-header">
-        4. STAATLICHE ÜBERWACHUNG
+<div class="slide-inner">
+    
+    <div class="header-tags">
+        <div class="pill-tag">Kapitel 10</div>
     </div>
 
-    <div class="surveillance-grid">
+    <h1 class="main-title">
+        <span class="helvetica-part">STAATLICHE</span><br>
+        <span class="serif-part">Überwachung</span>
+    </h1>
+
+    <div class="editorial-grid-2">
         
-        <div class="brut-card">
-            <div class="card-top">
-                <span>METADATEN</span>
-                <span class="rec-badge">LOGGING...</span>
-            </div>
+        <div class="wireframe-box surveillance-card">
             
-            <div class="monitor-view">
-                <div class="data-content">
-                    IP: 192.168.1.105 [STORED]<br>
-                    TIME: 14:02:55 CET<br>
-                    USER: citizen_X<br>
-                    LOC: 52.52, 13.40<br>
-                    ------------------<br>
-                    IP: 10.0.0.23 [STORED]<br>
-                    TARGET: chat.whatsapp<br>
-                    DUR: 1240s<br>
-                    ------------------<br>
-                    IP: 84.112.99.1 [STORED]<br>
-                    SEARCH: "vpn legal?"
-                </div>
+            <div class="card-header-row">
+                <div class="pill-tag pill-blue-border">Metadaten</div>
+                <div class="rec-indicator">● REC</div>
             </div>
 
-            <div class="card-text-area">
-                <h3>VORRATSDATENSPEICHERUNG</h3>
-                <ul>
-                    <li><strong>Generalverdacht:</strong> Speicherung aller Verbindungsdaten ohne Grund.</li>
-                    <li><strong>Was:</strong> Wer, wann, mit wem (Metadaten). Nicht der Inhalt!</li>
-                    <li><strong>Status:</strong> EuGH sagt oft "Nein". Diskussion über <em>"Quick-Freeze"</em> (nur bei Verdacht einfrieren).</li>
+            <div class="monitor-screen">
+                <div class="scrolling-logs">
+LOG_ID: 9942
+IP: 192.168.1.105
+USER: citizen_X
+LOC: 52.52, 13.40
+ACTION: connect_vpn
+STATUS: [LOGGED]
+---
+LOG_ID: 9943
+IP: 10.0.0.23
+TARGET: chat.whatsapp
+DUR: 1240s
+STATUS: [STORED]
+---
+LOG_ID: 9944
+SEARCH: "vpn legal?"
+STATUS: [FLAGGED]
+                </div>
+                <div class="screen-glare"></div>
+            </div>
+
+            <div class="card-content">
+                <h3 class="sub-title">Vorratsdatenspeicherung</h3>
+                <p class="content-text">
+                    Speicherung aller Verbindungsdaten <span class="highlight-marker">ohne Grund</span>.
+                </p>
+                <div class="divider-line"></div>
+                <ul class="detail-list">
+                    <li><strong>Was:</strong> Wer, wann, mit wem (Metadaten).</li>
+                    <li><strong>Status:</strong> EuGH sagt "Nein". Diskussion über <em>"Quick-Freeze"</em> (nur bei Verdacht einfrieren).</li>
                 </ul>
             </div>
+
+            <div class="corner-dot tr"></div>
         </div>
 
-        <div class="brut-card">
-            <div class="card-top">
-                <span>GESICHTSERKENNUNG</span>
-                <span class="rec-badge">SCANNING</span>
+        <div class="wireframe-box surveillance-card">
+            
+            <div class="card-header-row">
+                <div class="pill-tag pill-pink-border">Biometrie</div>
+                <div class="rec-indicator">● LIVE</div>
             </div>
 
-            <div class="monitor-view">
-                <div class="scanner-container">
+            <div class="monitor-screen scanner-mode">
+                <div class="face-container">
                     <pre class="ascii-face">
     #######
   ## o   o ##
@@ -56,17 +75,24 @@
     ######
                     </pre>
                     <div class="scan-beam"></div>
+                    <div class="target-box"></div>
                 </div>
+                <div class="match-badge">MATCH: 98%</div>
             </div>
 
-            <div class="card-text-area">
-                <h3>BIOMETRISCHE ÜBERWACHUNG</h3>
-                <ul>
-                    <li><strong>Echtzeit:</strong> Kameras an Bahnhöfen/Plätzen scannen Gesichter live.</li>
-                    <li><strong>Gefahr:</strong> Ein Passwort kann man ändern, sein Gesicht nicht (Identitätsdiebstahl).</li>
-                    <li><strong>Kritik:</strong> Hohe Fehlerquote und "Chilling Effect" (man fühlt sich ständig beobachtet).</li>
+            <div class="card-content">
+                <h3 class="sub-title">Gesichtserkennung</h3>
+                <p class="content-text">
+                    Ein Passwort kann man ändern, sein <span class="highlight-marker">Gesicht nicht</span>.
+                </p>
+                <div class="divider-line"></div>
+                <ul class="detail-list">
+                    <li><strong>Echtzeit:</strong> Kameras an Plätzen scannen live.</li>
+                    <li><strong>Gefahr:</strong> "Chilling Effect" – man fühlt sich ständig beobachtet und ändert sein Verhalten.</li>
                 </ul>
             </div>
+
+            <div class="corner-dot tr"></div>
         </div>
 
     </div>

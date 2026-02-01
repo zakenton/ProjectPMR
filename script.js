@@ -1,5 +1,5 @@
 let currentSlide = 1;
-const totalSlides = 20;
+const totalSlides = 19;
 let currentSlideStylesheet = null;
 
 async function loadSlide(index) {

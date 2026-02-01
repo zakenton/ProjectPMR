@@ -1,174 +1,206 @@
-:root {
-    --brut-purple: #C4B5FD;
-    --brut-yellow: #FFFF00;
-    --brut-green: #00FF88;
-    --brut-black: #000;
-    --brut-red: #FF4444; /* Для акцента на атаке */
-}
-
-.slide11-container {
-    width: 100%;
-    height: 75vh;
-    display: flex;
-    flex-direction: column;
-}
-
-.slide11-header {
-    background: var(--brut-black);
-    color: #fff; /* Белый текст на черном для контраста с прошлым слайдом */
-    font-size: 1.8rem;
-    padding: 10px 20px;
-    border: 4px solid var(--brut-black);
+/* --- ЗАГОЛОВОК --- */
+.main-title {
+    margin-top: 20px;
     margin-bottom: 30px;
-    text-transform: uppercase;
-    width: fit-content;
-    box-shadow: 6px 6px 0px var(--brut-purple);
+    line-height: 1;
 }
 
-/* Контейнер воронки */
-.funnel-flow {
+.helvetica-part {
+    font-family: var(--font-helvetica);
+    font-weight: bold;
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.serif-part {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 4rem;
+    color: #000;
+}
+
+/* --- ПОТОК (FLOW) --- */
+.editorial-flow {
     display: flex;
     justify-content: space-between;
     align-items: stretch;
-    gap: 10px;
-    flex-grow: 1;
-    width: 100%;
+    gap: 20px;
+    margin-top: 20px;
+    height: 60vh;
 }
 
-/* Стрелки между блоками */
-.flow-arrow {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: monospace;
-    font-size: 2rem;
-    font-weight: bold;
-    color: var(--brut-black);
-    user-select: none;
-    animation: pulseArrow 1.5s infinite;
-}
-
-@keyframes pulseArrow {
-    0%, 100% { transform: translateX(0); opacity: 0.5; }
-    50% { transform: translateX(5px); opacity: 1; }
-}
-
-/* Карточки этапов */
-.flow-card {
+/* --- КАРТОЧКА ШАГА --- */
+.flow-step {
     flex: 1;
-    border: 4px solid var(--brut-black);
-    background: #fff;
     display: flex;
     flex-direction: column;
-    box-shadow: 8px 8px 0px rgba(0,0,0,0.2);
-    transition: transform 0.2s;
+    padding: 25px;
+    background: #fff;
+    border: 1px solid #000;
+    position: relative;
+    transition: transform 0.3s;
 }
 
-.flow-card:hover {
-    transform: translate(-4px, -4px);
-    box-shadow: 12px 12px 0px rgba(0,0,0,0.2);
+.flow-step:hover {
+    transform: translateY(-5px);
+    box-shadow: 8px 8px 0px rgba(0,0,0,0.1);
 }
 
-/* Шапка карточки */
-.fc-header {
-    padding: 10px;
-    border-bottom: 4px solid var(--brut-black);
+/* Бейдж номера */
+.step-badge {
+    position: absolute;
+    top: -15px; left: 20px;
+    background: #fff;
+    border: 1px solid #000;
+    padding: 5px 15px;
+    font-family: var(--font-helvetica);
     font-weight: bold;
-    font-size: 1.1rem;
-    text-align: center;
+    font-size: 0.9rem;
     text-transform: uppercase;
+    box-shadow: 3px 3px 0px rgba(0,0,0,0.1);
 }
 
-/* Цвета шапок */
-.bg-yellow { background: var(--brut-yellow); }
-.bg-purple { background: var(--brut-purple); }
-.bg-dark { background: var(--brut-black); color: #fff; }
+.badge-red { border-color: #FF4444; color: #FF4444; }
+.badge-dark { background: #000; color: #fff; }
 
-/* Визуальная зона (ASCII) */
-.fc-visual {
-    flex: 1; /* Занимает доступное место */
-    background: #f4f4f4;
+/* --- ВИЗУАЛЬНЫЕ МИНИ-СЦЕНЫ --- */
+.visual-mini-scene {
+    height: 150px;
+    background: #fcfcfc;
+    border: 1px solid #eee;
+    margin: 15px 0 20px 0;
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-bottom: 4px solid var(--brut-black);
     overflow: hidden;
-    position: relative;
-    min-height: 150px;
 }
 
-.ascii-art {
-    font-family: monospace;
-    font-size: 0.8rem; /* Чуть меньше шрифт для сложных рисунков */
-    line-height: 1.1;
-    white-space: pre;
+.dark-mode-scene { background: #222; border-color: #000; }
+
+.hacker-icon, .db-icon, .market-icon {
+    font-size: 3rem;
     z-index: 2;
 }
 
-/* Текстовая зона */
-.fc-text {
-    padding: 15px;
-    background: #fff;
-    font-size: 0.95rem;
-    line-height: 1.4;
-}
-
-.fc-text strong {
-    display: block;
-    margin-bottom: 5px;
-    text-decoration: underline decoration-thickness 2px;
-}
-
-/* --- Анимации для каждого блока --- */
-
-/* 1. Spray Effect */
-.spray-particle {
+/* Анимация 1: Password Spray */
+.password-spray {
     position: absolute;
-    width: 4px; height: 4px;
-    background: var(--brut-black);
-    border-radius: 50%;
-    opacity: 0;
-    animation: sprayMove 1s linear infinite;
-}
-.sp1 { top: 40%; left: 60%; animation-delay: 0s; }
-.sp2 { top: 45%; left: 60%; animation-delay: 0.2s; }
-.sp3 { top: 35%; left: 60%; animation-delay: 0.4s; }
-
-@keyframes sprayMove {
-    0% { transform: translate(0, 0); opacity: 1; }
-    100% { transform: translate(40px, 20px) scale(0); opacity: 0; }
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%; height: 100%;
 }
 
-/* 2. Database Leak */
-.db-data {
+.pw-try {
     position: absolute;
-    color: var(--brut-red);
     font-family: monospace;
     font-size: 0.8rem;
-    font-weight: bold;
-    animation: dropData 2s linear infinite;
-}
-@keyframes dropData {
-    0% { top: 50%; opacity: 1; }
-    100% { top: 120%; opacity: 0; }
+    opacity: 0;
+    color: #666;
+    animation: sprayPW 2s infinite;
 }
 
-/* 3. Darknet Money */
-.money-symbol {
+.pw-try:nth-child(1) { top: 20%; left: 20%; animation-delay: 0s; }
+.pw-try:nth-child(2) { top: 60%; right: 20%; animation-delay: 0.6s; }
+.pw-try:nth-child(3) { bottom: 20%; left: 40%; animation-delay: 1.2s; }
+
+@keyframes sprayPW {
+    0% { transform: scale(0.5); opacity: 0; }
+    50% { transform: scale(1.2); opacity: 1; }
+    100% { transform: scale(1); opacity: 0; }
+}
+
+/* Анимация 2: Leak */
+.leak-stream {
     position: absolute;
-    top: 20%; right: 20%;
-    font-size: 1.5rem;
-    color: var(--brut-green);
-    animation: floatMoney 2s ease-in-out infinite alternate;
+    top: 60%; left: 50%;
+    transform: translateX(-50%);
 }
-@keyframes floatMoney {
-    0% { transform: translateY(0); }
-    100% { transform: translateY(-10px); }
+
+.leak-particle {
+    position: absolute;
+    font-family: monospace;
+    font-size: 0.8rem;
+    color: #FF4444;
+    font-weight: bold;
+    white-space: nowrap;
+    animation: dropLeak 1.5s linear infinite;
+    opacity: 0;
 }
+
+.leak-particle:nth-child(1) { animation-delay: 0s; left: -20px; }
+.leak-particle:nth-child(2) { animation-delay: 0.5s; left: 20px; }
+.leak-particle:nth-child(3) { animation-delay: 1s; left: 0; }
+
+@keyframes dropLeak {
+    0% { top: 0; opacity: 1; }
+    100% { top: 50px; opacity: 0; }
+}
+
+/* Анимация 3: Darknet Money */
+.money-popup {
+    position: absolute;
+    top: 30%; right: 20%;
+    color: #00FF88;
+    font-family: monospace;
+    font-weight: bold;
+    font-size: 1.2rem;
+    animation: floatUp 2s ease-out infinite;
+    opacity: 0;
+}
+
+@keyframes floatUp {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(-20px); opacity: 0; }
+}
+
+/* --- ТЕКСТ --- */
+.step-title {
+    font-family: var(--font-helvetica);
+    font-weight: bold;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.content-text {
+    font-family: var(--font-arial);
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #333;
+}
+
+.highlight-marker {
+    background: linear-gradient(120deg, #eee 0%, #eee 100%);
+    display: inline;
+    padding: 0 2px;
+    font-weight: bold;
+}
+
+/* --- СТРЕЛКА --- */
+.arrow-connector {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: #000;
+    opacity: 0.3;
+}
+
+/* Декор точек */
+.corner-dot {
+    position: absolute;
+    width: 6px; height: 6px;
+    background: #000;
+    border-radius: 50%;
+}
+.tr { top: -3px; right: -3px; }
 
 /* Mobile */
 @media (max-width: 900px) {
-    .funnel-flow { flex-direction: column; height: auto; }
-    .flow-arrow { transform: rotate(90deg); margin: 10px 0; }
-    .slide11-container { height: auto; }
+    .editorial-flow { flex-direction: column; height: auto; }
+    .arrow-connector { transform: rotate(90deg); margin: 10px 0; }
+    .flow-step { margin-bottom: 20px; }
+    .serif-part { font-size: 3rem; }
 }

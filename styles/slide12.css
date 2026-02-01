@@ -1,142 +1,238 @@
-:root {
-    --brut-purple: #C4B5FD;
-    --brut-yellow: #FFFF00;
-    --brut-black: #000;
-    --brut-red: #FF4444; /* Цвет опасности */
+/* --- СЕТКА --- */
+.editorial-grid {
+    display: flex;
+    gap: 40px;
+    margin-top: 20px;
+    align-items: stretch;
+    height: 60vh;
 }
 
-.slide12-container {
-    width: 100%;
-    height: 80vh;
+.visual-column {
+    flex: 1.3;
     display: flex;
     flex-direction: column;
-    font-family: monospace;
 }
 
-.slide12-header {
-    background: var(--brut-black);
-    color: var(--brut-yellow);
-    font-size: 1.8rem;
-    padding: 10px 20px;
-    border: 4px solid var(--brut-black);
-    margin-bottom: 20px;
+.text-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+/* --- ЗАГОЛОВОК --- */
+.main-title {
+    margin-top: 20px;
+    margin-bottom: 30px;
+    line-height: 1;
+}
+
+.helvetica-part {
+    font-family: var(--font-helvetica);
+    font-weight: bold;
+    font-size: 2.5rem;
     text-transform: uppercase;
-    width: fit-content;
-    box-shadow: 6px 6px 0px var(--brut-red);
+    letter-spacing: 2px;
 }
 
-/* Основная рабочая область */
-.anatomy-layout {
-    flex-grow: 1;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
+.serif-part {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 4rem;
+    color: #000;
 }
 
-/* Макет Фишингового Письма */
-.phishing-email-box {
-    width: 60%;
-    max-width: 600px;
+/* --- ОКНО БРАУЗЕРА (ВИЗУАЛ) --- */
+.browser-window {
+    flex: 1;
     background: #fff;
-    border: 4px solid var(--brut-black);
-    box-shadow: 10px 10px 0px rgba(0,0,0,0.2);
-    z-index: 2;
+    border: 1px solid #000;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    box-shadow: 10px 10px 0px rgba(0,0,0,0.1);
+}
+
+.browser-bar {
+    height: 40px;
+    border-bottom: 1px solid #000;
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    background: #f4f4f4;
+    gap: 15px;
+}
+
+.traffic-lights { display: flex; gap: 6px; }
+.light { width: 10px; height: 10px; border-radius: 50%; border: 1px solid #000; }
+.red { background: #ff5f56; }
+.yellow { background: #ffbd2e; }
+.green { background: #27c93f; }
+
+.url-bar {
+    flex: 1;
+    background: #fff;
+    border: 1px solid #000;
+    height: 24px;
+    border-radius: 12px;
+    font-family: monospace;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    color: #666;
+}
+
+/* Контент письма */
+.email-content {
+    padding: 30px;
+    font-family: var(--font-arial);
+    position: relative;
+    flex: 1;
+}
+
+.email-header-area {
+    border-bottom: 1px solid #eee;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
     position: relative;
 }
 
-.email-window-bar {
-    background: #ccc;
-    padding: 5px 10px;
-    border-bottom: 2px solid #000;
-    display: flex;
-    gap: 5px;
-}
-.win-dot { width: 12px; height: 12px; border-radius: 50%; border: 2px solid #000; }
-.wd-r { background: var(--brut-red); } .wd-y { background: var(--brut-yellow); } .wd-g { background: #00FF88; }
+.sender-row, .subject-row { margin-bottom: 5px; font-size: 0.9rem; }
+.sender-row strong, .subject-row strong { color: #888; margin-right: 5px; }
 
-.email-header {
-    padding: 15px;
-    background: #f9f9f9;
-    border-bottom: 2px solid #eee;
-    font-size: 0.9rem;
-}
-.email-row span:first-child { font-weight: bold; color: #666; margin-right: 10px; }
-
-/* Трюки в письме */
-.fake-sender { color: var(--brut-red); text-decoration: underline wavy var(--brut-red); }
-.personal-data { background: var(--brut-yellow); padding: 2px 5px; border: 2px solid #000; }
-
-.email-body {
-    padding: 20px;
+.email-body-text {
+    font-size: 1rem;
     line-height: 1.5;
+    color: #333;
+    margin-bottom: 25px;
+    position: relative;
 }
-.urgent-text { font-weight: bold; color: var(--brut-red); }
 
-.phish-button {
-    display: block;
-    width: fit-content;
-    margin: 20px auto 0;
-    padding: 10px 20px;
-    background: var(--brut-red);
+.stress-text {
+    background: #ffcccc;
+    font-weight: bold;
+    padding: 0 2px;
+}
+
+.cta-area {
+    text-align: center;
+    position: relative;
+}
+
+.fake-button {
+    display: inline-block;
+    background: #0070ba; /* PayPal Blue ish */
     color: #fff;
     text-decoration: none;
+    padding: 10px 30px;
+    border-radius: 20px;
     font-weight: bold;
-    border: 3px solid #000;
-    box-shadow: 4px 4px 0px #000;
-    animation: pulseBtn 1s infinite alternate;
+    font-family: var(--font-helvetica);
+    border: 1px solid #000;
 }
-@keyframes pulseBtn { from { transform: scale(1); } to { transform: scale(1.05); } }
 
-/* --- ВЫНОСКИ (CALL-OUTS) --- */
-.callout {
+/* Хотспоты (Красные точки с номерами) */
+.hotspot {
     position: absolute;
-    background: var(--brut-black);
+    width: 24px; height: 24px;
+    background: #FF4444;
     color: #fff;
-    padding: 10px;
-    border: 3px solid var(--brut-red);
-    max-width: 200px;
-    font-size: 0.85rem;
-    z-index: 3;
-    box-shadow: 5px 5px 0px rgba(255, 68, 68, 0.5);
+    border-radius: 50%;
+    font-size: 0.7rem;
+    font-weight: bold;
+    display: flex; align-items: center; justify-content: center;
+    border: 1px solid #000;
+    z-index: 10;
+    box-shadow: 2px 2px 0px rgba(0,0,0,0.2);
+    animation: pulseSpot 2s infinite;
 }
 
-.callout h4 {
-    color: var(--brut-red);
-    margin: 0 0 5px 0;
-    text-transform: uppercase;
-    font-size: 1rem;
+.h1 { top: 0; right: 0; }
+.h2 { top: 50%; right: 0; transform: translateY(-50%); }
+.h3 { top: 0; right: 20%; }
+
+@keyframes pulseSpot {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
 }
 
-/* Позиционирование выносок и стрелки */
-.c-sender { top: 10%; left: 5%; }
-.c-sender::after { content: "→"; position: absolute; right: -30px; top: 50%; color: var(--brut-red); font-size: 2rem; }
+/* Стикер с выводом */
+.verdict-sticker {
+    position: absolute;
+    bottom: 20px; left: 20px;
+    background: var(--accent-yellow);
+    padding: 10px 15px;
+    border: 1px solid #000;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    transform: rotate(-3deg);
+    box-shadow: 3px 3px 0px rgba(0,0,0,0.2);
+}
 
-.c-name { top: 25%; right: 5%; }
-.c-name::before { content: "←"; position: absolute; left: -30px; top: 50%; color: var(--brut-red); font-size: 2rem; }
-
-.c-urgency { bottom: 30%; left: 5%; }
-.c-urgency::after { content: "→"; position: absolute; right: -30px; top: 50%; color: var(--brut-red); font-size: 2rem; }
-
-.c-link { bottom: 10%; right: 5%; }
-.c-link::before { content: "←"; position: absolute; left: -30px; top: 20%; color: var(--brut-red); font-size: 2rem; }
-
-/* Вердикт внизу */
-.verdict-box {
-    margin-top: auto;
+/* --- ПРАВАЯ КОЛОНКА (АНАЛИЗ) --- */
+.analysis-card {
     background: #fff;
-    border: 4px solid var(--brut-black);
-    padding: 15px;
-    text-align: center;
-    font-size: 1.1rem;
+    border: 1px solid #000;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
+    transition: transform 0.2s;
 }
-.verdict-box strong { background: var(--brut-yellow); padding: 2px 8px; border: 2px solid #000;}
 
-/* Mobile view */
+.analysis-card:hover {
+    transform: translateX(-5px);
+}
+
+.card-header-row { margin-bottom: 10px; }
+
+.pill-red-border {
+    background: #fff;
+    border: 1px solid #FF4444;
+    color: #000;
+    font-weight: bold;
+    font-size: 0.8rem;
+    padding: 3px 10px;
+    box-shadow: 2px 2px 0px #FF4444;
+    display: inline-block;
+}
+
+.content-text {
+    font-family: var(--font-helvetica);
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: #000;
+}
+
+.content-desc {
+    font-family: var(--font-arial);
+    font-size: 0.95rem;
+    line-height: 1.4;
+    color: #444;
+}
+
+.divider-line {
+    width: 100%; height: 1px; background: #000; opacity: 0.1; margin: 8px 0;
+}
+
+/* Декор точек */
+.corner-dot {
+    position: absolute;
+    width: 6px; height: 6px;
+    background: #000;
+    border-radius: 50%;
+}
+.bl { bottom: -3px; left: -3px; }
+.br { bottom: -3px; right: -3px; }
+.tr { top: -3px; right: -3px; }
+
+/* Mobile */
 @media (max-width: 900px) {
-    .phishing-email-box { width: 90%; font-size: 0.8rem; }
-    .callout { position: relative; max-width: 100%; margin: 10px 0; left: auto !important; right: auto !important; top: auto !important; bottom: auto !important;}
-    .callout::after, .callout::before { display: none; }
-    .anatomy-layout { flex-direction: column; }
+    .editorial-grid { flex-direction: column; height: auto; }
+    .browser-window { height: 400px; }
+    .serif-part { font-size: 3rem; }
 }

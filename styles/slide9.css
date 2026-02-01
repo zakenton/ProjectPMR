@@ -1,77 +1,182 @@
-.slide9-container {
-    position: relative;
-    /* Заставляем контейнер занять почти всю высоту экрана */
-    min-height: 75vh; 
-    width: 100%;
+/* --- СЕТКА --- */
+.editorial-grid {
+    display: flex;
+    gap: 40px;
+    margin-top: 20px;
+    align-items: stretch;
+    height: 60vh;
+}
+
+.visual-column {
+    flex: 1.5;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
 }
 
-.slide9-title {
-    font-size: 1.5rem !important;
-    background: var(--accent-green) !important;
-    margin-bottom: 30px;
-}
-
-.info-grid {
-    display: flex;
-    justify-content: space-between;
-    gap: 25px;
-    width: 100%;
-    z-index: 2;
-}
-
-.info-item {
+.text-column {
     flex: 1;
-    background: #fff;
-    border: 4px solid #000;
-    padding: 20px;
-    box-shadow: 8px 8px 0px #000;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Распределяем карточки по высоте */
+    gap: 20px;
 }
 
-/* Цвета блоков */
-.pink-item { border-color: var(--accent-pink); }
-.pink-item h3 { background: var(--accent-pink); }
-.yellow-item { border-color: var(--accent-yellow); }
-.yellow-item h3 { background: var(--accent-yellow); }
-.blue-item { border-color: #3366FF; }
-.blue-item h3 { background: #3366FF; color: #fff; }
-
-/* Обертка для доллара */
-.dollar-wrapper {
-    position: absolute;
-    /* Теперь "bottom: 0" будет реально внизу экрана, 
-       так как высота контейнера 75vh */
-    bottom: -10px; 
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 1;
+/* --- ЗАГОЛОВОК --- */
+.main-title {
+    margin-top: 20px;
+    margin-bottom: 30px;
+    line-height: 1;
 }
 
-.ascii-dollar-detailed {
+.helvetica-part {
+    font-family: var(--font-helvetica);
+    font-weight: bold;
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.serif-part {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 4.5rem;
+    color: #000;
+}
+
+/* --- ВИЗУАЛЬНАЯ СЦЕНА (Доллар) --- */
+.scene-wrapper {
+    flex: 1;
+    background: #fdfdfd;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.bill-container {
+    transform: rotate(-5deg);
+    animation: floatingBill 4s ease-in-out infinite;
+    filter: drop-shadow(10px 10px 0px rgba(0,0,0,0.1));
+}
+
+@keyframes floatingBill {
+    0%, 100% { transform: rotate(-5deg) translateY(0); }
+    50% { transform: rotate(-3deg) translateY(-15px); }
+}
+
+.ascii-dollar {
     font-family: monospace;
-    /* Увеличим шрифт, раз места много */
-    font-size: 0.75rem; 
+    font-size: 0.8rem; /* Подбираем размер, чтобы влезло */
     line-height: 1.1;
     color: #004d00;
-    background: #c7f0c7;
-    padding: 15px;
-    border: 3px dashed #006400;
-    pointer-events: none;
-    transform-origin: center top;
-    animation: billDangle 3s ease-in-out infinite alternate;
+    font-weight: bold;
+    background: #e8f5e9; /* Очень светло-зеленый фон самой купюры */
+    padding: 20px;
+    border: 2px dashed #006400;
+    white-space: pre;
 }
 
-@keyframes billDangle {
-    0% { transform: rotate(2deg); }
-    100% { transform: rotate(-2deg); }
+.scene-caption-tag {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    background: #000;
+    color: var(--accent-green);
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-weight: bold;
+    letter-spacing: 1px;
 }
 
-/* Адаптация */
+/* --- ТЕКСТОВЫЕ БЛОКИ --- */
+.info-block {
+    padding: 20px;
+    background: #fff;
+    border: 1px solid #000;
+    position: relative;
+    flex: 1; /* Равномерная высота */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transition: transform 0.2s;
+}
+
+.info-block:hover {
+    transform: translateX(-5px);
+    box-shadow: 5px 5px 0px rgba(0,0,0,0.05);
+}
+
+.card-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.mini-icon { font-size: 1.5rem; }
+
+.content-text {
+    font-family: var(--font-helvetica);
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: #000;
+}
+
+.content-desc {
+    font-family: var(--font-arial);
+    font-size: 0.95rem;
+    line-height: 1.4;
+    color: #444;
+}
+
+.divider-line {
+    width: 100%; height: 1px; background: #000; opacity: 0.1; margin: 10px 0;
+}
+
+/* Цветные таблетки */
+.pill-pink-border, .pill-yellow-border, .pill-blue-border {
+    background: #fff;
+    color: #000;
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    letter-spacing: 1px;
+    padding: 4px 12px;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.pill-pink-border { border: 1px solid var(--accent-pink); box-shadow: 2px 2px 0px var(--accent-pink); }
+.pill-yellow-border { border: 1px solid var(--accent-yellow); box-shadow: 2px 2px 0px var(--accent-yellow); }
+.pill-blue-border { border: 1px solid #3366FF; box-shadow: 2px 2px 0px #3366FF; }
+
+.highlight-marker {
+    background: linear-gradient(120deg, var(--accent-yellow) 0%, var(--accent-yellow) 100%);
+    background-size: 100% 40%;
+    background-repeat: no-repeat;
+    background-position: 0 85%;
+    display: inline;
+}
+
+/* Декор точек */
+.corner-dot {
+    position: absolute;
+    width: 6px; height: 6px;
+    background: #000;
+    border-radius: 50%;
+}
+.tl { top: -3px; left: -3px; }
+.tr { top: -3px; right: -3px; }
+.bl { bottom: -3px; left: -3px; }
+.br { bottom: -3px; right: -3px; }
+
+/* Mobile */
 @media (max-width: 900px) {
-    .info-grid { flex-direction: column; }
-    .slide9-container { min-height: auto; }
-    .dollar-wrapper { position: relative; margin-top: 50px; bottom: 0; }
-    .ascii-dollar-detailed { font-size: 0.4rem; }
+    .editorial-grid { flex-direction: column; height: auto; }
+    .scene-wrapper { height: 300px; }
+    .ascii-dollar { font-size: 0.5rem; padding: 10px; }
+    .serif-part { font-size: 3rem; }
 }

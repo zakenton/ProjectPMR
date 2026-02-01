@@ -1,121 +1,214 @@
-/* Сетка инвентаря */
-.inventory-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    width: 100%;
-    margin-top: 10px;
-    height: 60vh; /* Фиксируем высоту для выравнивания */
+/* --- ЗАГОЛОВОК --- */
+.main-title {
+    margin-top: 20px;
+    margin-bottom: 30px;
+    line-height: 1;
 }
 
-/* Карточка предмета */
-.inv-card {
+.helvetica-part {
+    font-family: var(--font-helvetica);
+    font-weight: bold;
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.serif-part {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 4rem;
+    color: #000;
+}
+
+/* --- СЕТКА (3 колонки) --- */
+.tools-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    margin-top: 20px;
+    align-items: stretch;
+    height: 55vh;
+}
+
+/* --- КАРТОЧКА --- */
+.tool-card {
     background: #fff;
-    border: 4px solid #000;
-    box-shadow: 8px 8px 0px #000;
+    border: 1px solid #000;
     display: flex;
     flex-direction: column;
-    transition: transform 0.2s;
+    padding: 0; /* Паддинг внутри контента */
+    position: relative;
+    transition: transform 0.3s;
     overflow: hidden;
 }
 
-.inv-card:hover {
+.tool-card:hover {
     transform: translateY(-5px);
-    box-shadow: 12px 12px 0px #000;
+    box-shadow: 8px 8px 0px rgba(0,0,0,0.1);
 }
 
-/* Цветовые темы */
-.card-green { border-color: #000; }
-.card-green .inv-header { background: var(--accent-green); }
-.card-green .inv-icon { color: #004d00; background: #ccffcc; }
+/* Верхняя полоса */
+.card-top-bar {
+    padding: 10px 15px;
+    border-bottom: 1px solid #000;
+    background: #fcfcfc;
+}
 
-.card-yellow { border-color: #000; }
-.card-yellow .inv-header { background: var(--accent-yellow); }
-.card-yellow .inv-icon { color: #554400; background: #fffbe6; }
-
-.card-blue { border-color: #000; }
-.card-blue .inv-header { background: #3366FF; color: #fff; }
-.card-blue .inv-icon { color: #000080; background: #e6f0ff; }
-
-/* Заголовок карточки */
-.inv-header {
-    padding: 10px;
-    border-bottom: 4px solid #000;
+.tool-id {
     font-family: monospace;
     font-weight: bold;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    color: #666;
+    font-size: 0.8rem;
 }
 
-.lvl { font-size: 0.8rem; opacity: 0.7; }
-.name { font-size: 1.1rem; text-transform: uppercase; }
-
-/* Иконка (ASCII) */
-.inv-icon {
-    flex: 1; /* Занимает доступное пространство */
+/* --- ВИЗУАЛЬНАЯ СЦЕНА (ANIMATION STAGE) --- */
+.visual-stage {
+    height: 140px;
+    background: #fafafa;
+    border-bottom: 1px solid #000;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: monospace;
-    font-size: 1.2rem; /* Размер ASCII арта */
+    overflow: hidden;
+    position: relative;
+}
+
+/* АНИМАЦИЯ 1: VAULT (Сейф) */
+.anim-vault {
+    position: relative;
+    width: 60px; height: 60px;
+    display: flex; align-items: center; justify-content: center;
+}
+
+.vault-ring {
+    position: absolute;
+    width: 100%; height: 100%;
+    border: 4px dashed #000;
+    border-radius: 50%;
+    animation: rotateVault 10s linear infinite;
+}
+
+.vault-core {
+    width: 20px; height: 20px;
+    background: var(--accent-green);
+    border: 2px solid #000;
+    border-radius: 4px;
+    transform: rotate(45deg);
+    animation: pulseCore 2s ease-in-out infinite;
+}
+
+@keyframes rotateVault { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+@keyframes pulseCore { 0%, 100% { transform: rotate(45deg) scale(1); } 50% { transform: rotate(45deg) scale(1.3); } }
+
+
+/* АНИМАЦИЯ 2: SHIELD / PULSE (2FA) */
+.anim-shield {
+    position: relative;
+    width: 60px; height: 60px;
+    display: flex; align-items: center; justify-content: center;
+}
+
+.shield-circle {
+    position: absolute;
+    border: 2px solid var(--accent-yellow);
+    border-radius: 50%;
+    opacity: 0;
+}
+
+.c1 { width: 100%; height: 100%; animation: radarPing 2s infinite; animation-delay: 0s; }
+.c2 { width: 100%; height: 100%; animation: radarPing 2s infinite; animation-delay: 1s; }
+
+.shield-icon {
+    position: relative;
     font-weight: bold;
-    padding: 20px 0;
-    border-bottom: 4px solid #000;
+    font-size: 1.5rem;
+    color: #000;
+    z-index: 2;
 }
 
-.inv-icon pre {
-    line-height: 1.1;
-    text-align: center;
+@keyframes radarPing {
+    0% { transform: scale(0.5); opacity: 1; border-width: 2px; }
+    100% { transform: scale(1.5); opacity: 0; border-width: 0px; }
 }
 
-/* Описание (Stats) */
-.inv-stats {
-    padding: 15px;
-    background: #fff;
-    font-size: 0.9rem;
+
+/* АНИМАЦИЯ 3: TUNNEL (VPN) */
+.anim-tunnel {
+    position: relative;
+    width: 60px; height: 60px;
+    display: flex; align-items: center; justify-content: center;
+}
+
+.tunnel-wave {
+    position: absolute;
+    border: 2px solid var(--accent-purple);
+    border-radius: 50%;
+    opacity: 0;
+    animation: tunnelMove 3s linear infinite;
+}
+
+.w1 { animation-delay: 0s; }
+.w2 { animation-delay: 1s; }
+.w3 { animation-delay: 2s; }
+
+@keyframes tunnelMove {
+    0% { width: 10px; height: 10px; opacity: 0; border-width: 4px; }
+    20% { opacity: 1; }
+    100% { width: 80px; height: 80px; opacity: 0; border-width: 1px; }
+}
+
+
+/* --- ТЕКСТОВЫЙ КОНТЕНТ --- */
+.text-content {
+    padding: 20px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    flex-grow: 1;
 }
 
-/* Pro Tip Box */
-.pro-tip {
-    margin-top: auto; /* Прижимает к низу */
-    background: #000;
-    color: #fff;
-    padding: 8px;
-    font-size: 0.8rem;
-    font-family: monospace;
-    border: 2px dashed #555;
-}
-
-.tip-label {
-    color: var(--accent-yellow);
+.tool-name {
+    font-family: var(--font-helvetica);
     font-weight: bold;
-    display: block;
-    margin-bottom: 3px;
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    text-transform: uppercase;
 }
 
-/* Анимация кода 2FA */
-.code-anim {
-    animation: glitchText 3s infinite steps(1);
+.tool-desc {
+    font-family: var(--font-arial);
+    font-size: 0.95rem;
+    line-height: 1.4;
+    color: #444;
+    margin-bottom: 20px;
+    flex-grow: 1; /* Чтобы спецификации были внизу */
 }
 
-@keyframes glitchText {
-    0% { content: "392 018"; }
-    25% { transform: skewX(2deg); }
-    50% { content: "882 192"; transform: skewX(-2deg); }
-    75% { transform: skewX(1deg); }
-    100% { content: "392 018"; transform: skewX(0deg); }
+/* Спецификации (Нижний блок) */
+.spec-box {
+    background: #f4f4f4;
+    border-left: 3px solid #000;
+    padding: 10px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
 }
+
+.spec-row { margin-bottom: 5px; }
+.spec-row:last-child { margin-bottom: 0; }
+
+/* Цветовые акценты */
+.tool-card:nth-child(1) .spec-box { border-color: var(--accent-green); }
+.tool-card:nth-child(2) .spec-box { border-color: var(--accent-yellow); }
+.tool-card:nth-child(3) .spec-box { border-color: var(--accent-purple); }
+
+/* Декор точек */
+.corner-dot {
+    position: absolute; width: 6px; height: 6px; background: #000; border-radius: 50%;
+}
+.tr { top: -3px; right: -3px; }
 
 /* Mobile */
 @media (max-width: 900px) {
-    .inventory-grid {
-        grid-template-columns: 1fr; /* Одна колонка */
-        height: auto;
-    }
-    .inv-card { margin-bottom: 20px; }
-    .inv-icon { padding: 10px 0; font-size: 1rem; }
+    .tools-grid { grid-template-columns: 1fr; height: auto; }
+    .tool-card { margin-bottom: 20px; }
+    .serif-part { font-size: 3rem; }
 }

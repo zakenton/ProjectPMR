@@ -1,165 +1,234 @@
-/* Основная сетка */
-.tattoo-layout {
+/* --- СЕТКА --- */
+.editorial-grid {
     display: flex;
-    gap: 40px;
+    gap: 30px; /* Чуть меньше отступ */
+    margin-top: 15px;
+    align-items: stretch;
+    height: 55vh; /* Компактная высота для фиксации в экране */
     width: 100%;
-    margin-top: 30px;
-    align-items: center;
 }
 
-.visual-zone {
+.visual-column {
+    flex: 1.3;
+    display: flex;
+    flex-direction: column;
+}
+
+.text-column {
     flex: 1;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    justify-content: space-between;
+    gap: 15px; /* Меньше отступ между блоками */
 }
 
-.content-zone {
+/* --- ЗАГОЛОВОК --- */
+.main-title {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    line-height: 0.9;
+}
+
+.helvetica-part {
+    font-family: var(--font-helvetica);
+    font-weight: bold;
+    font-size: 2.2rem; /* Уменьшил */
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.serif-part {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 4rem; /* Уменьшил */
+    color: #000;
+}
+
+/* --- ВИЗУАЛ (СКАНЕР) --- */
+.scanner-frame {
     flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-/* --- СТИЛИЗАЦИЯ ОТПЕЧАТКА --- */
-.fingerprint-wrapper {
-    position: relative;
-    padding: 20px;
-    border: 4px solid #000;
     background: #fff;
-    box-shadow: 10px 10px 0px #000;
-    margin-bottom: 25px;
+    border: 1px solid #000;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding: 15px;
 }
 
-.ascii-fingerprint {
+.scanner-header {
+    display: flex;
+    justify-content: space-between;
     font-family: monospace;
-    font-size: 1.2rem; /* Размер самого отпечатка */
+    font-size: 0.75rem;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 8px;
+    margin-bottom: 15px;
+    color: #666;
+}
+
+.status-live { color: #FF4444; animation: blink 1s infinite; font-weight: bold; letter-spacing: 1px; }
+@keyframes blink { 50% { opacity: 0; } }
+
+.fingerprint-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    border: 1px dashed #ddd;
+    background: #fafafa;
+    overflow: hidden;
+}
+
+/* ASCII СЛЕДЫ */
+.ascii-art-feet {
+    font-family: monospace;
+    font-size: 1.1rem; /* Подбираем размер под контейнер */
     line-height: 1;
     color: #222;
     font-weight: bold;
-    text-align: center;
     user-select: none;
-    /* Легкая анимация "дыхания" */
-    animation: breathe 4s ease-in-out infinite;
-}
-
-@keyframes breathe {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.02); }
+    z-index: 1;
+    text-align: center;
+    white-space: pre;
 }
 
 /* Линия сканирования */
-.scan-line {
+.scan-beam {
     position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 4px;
+    width: 100%; height: 2px;
     background: var(--accent-green);
     box-shadow: 0 0 10px var(--accent-green);
-    opacity: 0.6;
-    animation: scanMove 3s linear infinite;
-    pointer-events: none;
+    top: 0;
+    z-index: 2;
+    animation: scanMove 3s ease-in-out infinite;
+    opacity: 0.8;
 }
 
 @keyframes scanMove {
-    0% { top: 0; opacity: 0; }
-    10% { opacity: 1; }
-    90% { opacity: 1; }
-    100% { top: 100%; opacity: 0; }
+    0% { top: 5%; }
+    50% { top: 95%; }
+    100% { top: 5%; }
 }
 
-/* --- ВЫНОСКИ (LABELS) --- */
-.fp-label {
+/* Точки данных */
+.data-point {
     position: absolute;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    z-index: 3;
+}
+
+.point-dot {
+    width: 8px; height: 8px;
+    background: #000;
+    border-radius: 50%;
+    position: relative;
+}
+.point-dot::after {
+    content: ''; position: absolute;
+    top: -3px; left: -3px; right: -3px; bottom: -3px;
+    border: 1px solid #000; border-radius: 50%;
+    animation: pulseDot 2s infinite;
+}
+
+.point-label {
     background: #fff;
-    border: 3px solid #000;
-    padding: 5px 10px;
+    border: 1px solid #000;
+    padding: 2px 6px;
     font-family: monospace;
-    font-size: 0.8rem;
-    z-index: 10;
-    box-shadow: 4px 4px 0px rgba(0,0,0,0.2);
-    width: 160px;
-    transition: transform 0.3s;
-}
-
-.fp-label:hover {
-    transform: scale(1.1);
-    z-index: 15;
-}
-
-.l-title {
-    display: block;
-    font-weight: bold;
-    background: #000;
-    color: #fff;
-    padding: 2px 5px;
-    margin-bottom: 3px;
+    font-size: 0.65rem;
     text-transform: uppercase;
+    box-shadow: 2px 2px 0px rgba(0,0,0,0.1);
+    white-space: nowrap;
 }
 
-/* Позиции выносок */
+/* Позиционирование точек на следах */
+.p-health { top: 30%; left: 15%; }
+.p-chats { bottom: 25%; left: 20%; }
+.p-loc { top: 60%; right: 15%; flex-direction: row-reverse; }
 
-/* 1. Слева сверху */
-.lab-1 {
-    top: -20px; left: -100px;
-    border-color: var(--accent-pink);
-}
-.lab-1 .l-title { background: var(--accent-pink); color: #000; }
+@keyframes pulseDot { 0% { transform: scale(1); opacity: 1; } 100% { transform: scale(2.5); opacity: 0; } }
 
-/* 2. Справа посередине */
-.lab-2 {
-    top: 40%; right: -120px;
-    border-color: var(--accent-green);
-}
-.lab-2 .l-title { background: var(--accent-green); color: #000; }
-
-/* 3. Слева снизу */
-.lab-3 {
-    bottom: -10px; left: -90px;
-    border-color: var(--accent-yellow);
-}
-.lab-3 .l-title { background: var(--accent-yellow); color: #000; }
-
-/* Линии-коннекторы (просто черточки через псевдоэлементы) */
-.fp-label::after {
-    content: '';
-    position: absolute;
-    width: 30px; height: 3px;
-    background: #000;
-    z-index: -1;
-}
-
-/* Направление линий */
-.lab-1::after { right: -30px; top: 50%; transform: rotate(20deg); }
-.lab-2::after { left: -30px; top: 50%; }
-.lab-3::after { right: -30px; top: 50%; transform: rotate(-20deg); }
-
-
-/* --- СЛОГАН И ТЕКСТ --- */
-.tattoo-slogan {
-    font-family: 'Arial Black', sans-serif;
-    font-size: 1.2rem;
+.scanner-footer {
+    margin-top: 15px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
     text-align: center;
-    border-top: 4px solid #000;
-    border-bottom: 4px solid #000;
-    padding: 10px 0;
-    background: #fff;
-    width: 100%;
+    color: #333;
 }
 
-.item-storage { border-color: var(--accent-pink); }
-.item-pain { border-color: #000; background: #eee; }
-.item-profile { border-color: var(--accent-green); }
+.status-archived {
+    background: #000; color: #fff; 
+    padding: 2px 6px; font-weight: bold;
+}
 
-.info-item h3 { font-size: 1rem; margin-bottom: 5px; }
 
-/* Мобильная адаптация */
+/* --- ТЕКСТОВЫЕ БЛОКИ --- */
+.info-block {
+    padding: 15px 20px; /* Компактнее */
+    background: #fff;
+    border: 1px solid #000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
+    transition: transform 0.2s;
+}
+
+.info-block:hover { transform: translateX(-5px); }
+
+.pill-black-border, .pill-pink-border, .pill-green-border {
+    background: #fff;
+    color: #000;
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    letter-spacing: 1px;
+    padding: 3px 10px;
+    font-weight: bold;
+    display: inline-block;
+    margin-bottom: 8px;
+}
+
+.pill-black-border { border: 1px solid #000; box-shadow: 2px 2px 0px #000; }
+.pill-pink-border { border: 1px solid var(--accent-pink); box-shadow: 2px 2px 0px var(--accent-pink); }
+.pill-green-border { border: 1px solid var(--accent-green); box-shadow: 2px 2px 0px var(--accent-green); }
+
+.content-text {
+    font-family: var(--font-helvetica);
+    font-weight: bold;
+    font-size: 1rem;
+    color: #000;
+    margin-bottom: 4px;
+    line-height: 1.2;
+}
+
+.content-desc {
+    font-family: var(--font-arial);
+    font-size: 0.9rem;
+    line-height: 1.3;
+    color: #444;
+}
+
+.highlight-marker {
+    background: linear-gradient(120deg, var(--accent-green) 0%, var(--accent-green) 100%);
+    background-size: 100% 30%;
+    background-repeat: no-repeat;
+    background-position: 0 85%;
+    display: inline;
+}
+
+/* Декор точек */
+.corner-dot {
+    position: absolute; width: 6px; height: 6px; background: #000; border-radius: 50%;
+}
+.tl { top: -3px; left: -3px; } .tr { top: -3px; right: -3px; }
+.bl { bottom: -3px; left: -3px; } .br { bottom: -3px; right: -3px; }
+
+/* Mobile */
 @media (max-width: 900px) {
-    .tattoo-layout { flex-direction: column; }
-    .visual-zone { margin-bottom: 40px; }
-    
-    /* Сжимаем выноски на мобилке, чтобы не вылезали */
-    .fp-label { position: relative; top: auto !important; left: auto !important; right: auto !important; margin: 5px 0; width: 100%; transform: none !important; }
-    .fp-label::after { display: none; } /* Убираем линии на мобилке */
-    .fingerprint-wrapper { width: 100%; display: flex; flex-direction: column; align-items: center; }
-    .ascii-fingerprint { margin-bottom: 10px; }
+    .editorial-grid { flex-direction: column; height: auto; }
+    .scanner-frame { height: 350px; }
+    .serif-part { font-size: 3rem; }
 }

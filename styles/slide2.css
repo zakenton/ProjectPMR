@@ -1,55 +1,115 @@
-/* Стили для Слайда 2: Парадокс */
-
+/* --- СЕТКА И РАСКЛАДКА --- */
 .paradox-wrapper {
     display: flex;
-    width: 100%;
-    height: 70vh; /* Оставляем место под вопрос внизу */
-    gap: 20px;
+    align-items: stretch;
+    justify-content: space-between;
+    gap: 30px;
+    margin-top: 30px;
+    position: relative;
 }
 
+/* Колонки в стиле wireframe (наследуют базовый класс, но с доп настройками) */
 .paradox-column {
     flex: 1;
-    border: 4px solid #000;
-    padding: 30px;
     display: flex;
     flex-direction: column;
+    align-items: flex-start; /* Выравнивание по левому краю для журнального стиля */
+    padding: 30px;
+    background: #fff;
+    min-height: 350px;
+    transition: transform 0.3s ease;
+}
+
+.paradox-column:hover {
+    transform: translateY(-5px);
+    box-shadow: 5px 5px 0px rgba(0,0,0,0.1);
+}
+
+/* --- ИКОНКИ В КРУГАХ --- */
+.icon-circle {
+    font-size: 2.5rem;
+    width: 70px; height: 70px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    border: 1px solid #000;
+    margin-bottom: 20px;
+}
+
+.purple-bg { background: var(--accent-purple); }
+.yellow-bg { background: var(--accent-yellow); }
+
+/* --- ТАБЛЕТКИ ЗАГОЛОВКОВ (STATUS PILLS) --- */
+.status-pill {
+    font-family: var(--font-helvetica);
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 1rem;
+    padding: 8px 20px;
+    border-radius: 50px;
+    border: 1px solid #000;
+    margin-bottom: 20px;
+    background: #fff;
+    display: inline-block;
+}
+
+.purple-border { border-color: var(--accent-purple); color: #000; box-shadow: 3px 3px 0px var(--accent-purple); }
+.yellow-border { border-color: var(--accent-yellow); color: #000; box-shadow: 3px 3px 0px var(--accent-yellow); }
+
+/* --- ТЕКСТ --- */
+.content-text {
+    font-family: var(--font-arial);
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #333;
+}
+
+.highlight-marker {
+    background: linear-gradient(120deg, #eee 0%, #eee 100%); /* Серый маркер для текста */
+    display: inline;
+    padding: 0 4px;
+}
+
+/* --- РАЗДЕЛИТЕЛЬ "VS" --- */
+.vs-connector {
+    display: flex;
     align-items: center;
     justify-content: center;
-    text-align: center;
-    box-shadow: 10px 10px 0px #000;
-}
-
-.serious-blue {
-    background-color: #3366FF; /* Глубокий синий */
-    color: #fff;
-}
-
-.fun-orange {
-    background-color: #FF6600; /* Яркий оранжевый */
+    font-size: 2rem;
     color: #000;
 }
 
-.paradox-icon {
-    font-size: 4rem;
-    background: #fff;
-    border: 3px solid #000;
-    padding: 10px;
-    margin-bottom: 20px;
-    box-shadow: 4px 4px 0px #000;
+.serif-italic {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: bold;
 }
 
+/* --- НИЖНИЙ ВОПРОС --- */
 .bottom-banner {
     margin-top: 40px;
-    width: 100%;
-    text-align: center;
+    border-top: 1px solid #000;
+    padding-top: 20px;
+    text-align: left;
 }
 
-.orange-bg { background-color: var(--accent-yellow) !important; color: #000; }
-.pink-bg { background-color: var(--accent-pink) !important; color: #000; }
+.question-text {
+    font-family: var(--font-helvetica);
+    font-weight: bold;
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+}
 
-/* Mobile */
-@media (max-width: 768px) {
-    .paradox-wrapper { flex-direction: column; height: auto; }
-    .paradox-column { padding: 15px; }
-    .paradox-icon { font-size: 2.5rem; }
+.serif-italic-small {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.5rem;
+    margin-left: 10px;
+    border-bottom: 2px solid var(--accent-yellow); /* Подчеркивание */
+}
+
+/* --- МОБИЛЬНАЯ АДАПТАЦИЯ --- */
+@media (max-width: 900px) {
+    .paradox-wrapper { flex-direction: column; gap: 20px; }
+    .vs-connector { margin: 10px 0; transform: rotate(90deg); }
+    .bottom-banner { text-align: center; }
 }

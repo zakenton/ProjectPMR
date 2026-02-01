@@ -1,55 +1,108 @@
-/* Стили для Слайда 1: Титульный слайд */
+/* Контейнер заголовков */
+.header-tags {
+    position: absolute; 
+    top: 0; left: 0; 
+    width: 100%; 
+    display: flex; 
+    gap: 10px;
+}
 
-/* ОБНОВЛЕННЫЕ стили для рок-руки */
+.content-wrapper {
+    margin-top: 60px; 
+    position: relative; 
+    z-index: 10;
+}
+
+/* --- ТИПОГРАФИКА --- */
+
+.main-title {
+    line-height: 1.1;
+    margin-bottom: 40px;
+    color: #000;
+}
+
+/* 1. Helvetica (Верхняя часть) */
+.helvetica-part {
+    font-family: var(--font-helvetica); /* Helvetica */
+    font-weight: bold;
+    font-style: normal;
+    font-size: 2.5rem; 
+    text-transform: uppercase; /* Прописные (Заглавные) для контраста */
+    letter-spacing: 1px;
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* 2. Playfair Display Italic (Нижняя часть) */
+/* "прописные" в дизайне часто значит каллиграфические/курсивные,
+   в контексте Playfair Display это Italic */
+.serif-part {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-style: italic; /* Курсив */
+    font-size: 4.5rem;  /* Крупнее для акцента */
+}
+
+/* 3. Arial (Описание) */
+.description-box {
+    max-width: 550px;
+    border: 1px solid #000;
+    box-shadow: 10px 10px 0px rgba(0,0,0,0.1); /* Легкая тень */
+}
+
+.arial-text {
+    font-family: var(--font-arial); /* Arial */
+    font-size: 1.3rem;
+    line-height: 1.5;
+    color: #333;
+}
+
+/* Маркерное выделение текста */
+.highlight-marker {
+    background: linear-gradient(120deg, var(--accent-yellow) 0%, var(--accent-yellow) 100%);
+    background-repeat: no-repeat;
+    background-size: 100% 40%;
+    background-position: 0 85%;
+    display: inline;
+}
+
+/* Декоративные точки снизу блока */
+.corner-dot {
+    position: absolute;
+    width: 8px; height: 8px;
+    background: #000;
+    border-radius: 50%;
+    bottom: -4px;
+}
+.bl { left: -4px; }
+.br { right: -4px; }
+
+
+/* --- АНИМАЦИЯ РУКИ --- */
 .rock-hand {
     position: absolute;
-    /* 1. Начальное состояние: полностью прозрачная и смещенная */
     opacity: 0; 
     transform: translate(100%, 100%) rotate(-45deg);
-    
-    bottom: 0; 
-    right: 0;
+    bottom: -20px; 
+    right: -20px;
     font-size: 250px;
     z-index: 5;
     user-select: none;
     pointer-events: none;
-    filter: drop-shadow(10px 10px 0px #000);
-    
-    /* 2. Анимация */
-    /* forwards — оставит руку в конечном положении */
+    filter: drop-shadow(5px 5px 0px rgba(0,0,0,0.2)); /* Тень стала мягче */
     animation: handSlideIn 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-    animation-delay: 0.6s; 
+    animation-delay: 0.4s; 
 }
 
 @keyframes handSlideIn {
-    0% {
-        opacity: 0;
-        transform: translate(100%, 100%) rotate(-45deg);
-    }
-    10% {
-        opacity: 1; /* Быстро проявляем руку в начале движения */
-    }
-    100% {
-        opacity: 1;
-        /* Конечное положение */
-        transform: translate(-120px, -120px) rotate(-15deg);
-    }
+    0% { opacity: 0; transform: translate(50%, 50%) rotate(-45deg); }
+    100% { opacity: 1; transform: translate(0, 0) rotate(-15deg); }
 }
 
-/* Mobile */
+/* Адаптация под мобильные */
 @media (max-width: 768px) {
-    /* рука */
-    .rock-hand {
-        font-size: 150px;
-        opacity: 0;
-        transform: translate(100%, 100%) rotate(-45deg);
-        animation: handSlideInMobile 1.2s forwards;
-        animation-delay: 0.6s;
-    }
-}
-
-@keyframes handSlideInMobile {
-    0% { opacity: 0; transform: translate(100%, 100%) rotate(-45deg); }
-    10% { opacity: 1; }
-    100% { opacity: 1; transform: translate(-60px, -60px) rotate(-15deg); }
+    .helvetica-part { font-size: 1.5rem; }
+    .serif-part { font-size: 3rem; }
+    .arial-text { font-size: 1.1rem; }
+    .rock-hand { font-size: 150px; }
 }

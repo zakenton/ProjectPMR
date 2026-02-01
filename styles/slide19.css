@@ -1,0 +1,239 @@
+/* --- СЕТКА --- */
+.editorial-grid {
+    display: flex;
+    gap: 40px;
+    margin-top: 20px;
+    align-items: stretch;
+    height: 60vh;
+}
+
+.visual-column {
+    flex: 1.3;
+    display: flex;
+    flex-direction: column;
+}
+
+.text-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 25px;
+}
+
+/* --- ЗАГОЛОВОК --- */
+.main-title {
+    margin-top: 20px;
+    margin-bottom: 30px;
+    line-height: 1;
+}
+
+.helvetica-part {
+    font-family: var(--font-helvetica);
+    font-weight: bold;
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.serif-part {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 5rem;
+    color: #000;
+}
+
+/* --- НОВЫЙ ВИЗУАЛ: ТЕРМИНАЛ --- */
+.terminal-scene {
+    flex: 1;
+    background: #fff;
+    border: 1px solid #000;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Шапка терминала */
+.terminal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    background: #f4f4f4;
+    border-bottom: 1px solid #000;
+    font-family: monospace;
+    font-size: 0.8rem;
+    color: #666;
+}
+
+.terminal-controls { display: flex; gap: 5px; }
+.ctrl-dot { width: 10px; height: 10px; border-radius: 50%; border: 1px solid #666; }
+
+/* Экран терминала */
+.terminal-screen {
+    flex: 1;
+    background: #111; /* Темный экран */
+    position: relative;
+    padding: 20px;
+    font-family: 'Courier New', monospace;
+    color: var(--accent-green);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Логи процессов */
+.process-logs {
+    position: absolute;
+    top: 20px; left: 20px;
+    width: 100%;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    /* Логи исчезают через 2.5 секунды */
+    animation: fadeOutLogs 0.5s forwards 2.5s;
+}
+
+.process-logs p {
+    opacity: 0;
+    animation: typeLine 0.1s forwards;
+}
+/* Появление строк по очереди */
+.process-logs p:nth-child(1) { animation-delay: 0.5s; }
+.process-logs p:nth-child(2) { animation-delay: 1.2s; }
+.process-logs p:nth-child(3) { animation-delay: 1.9s; }
+.blink-cursor { animation: blink 1s step-end infinite !important; animation-delay: 2s !important; }
+
+@keyframes typeLine { to { opacity: 1; } }
+@keyframes blink { 50% { opacity: 0; } }
+@keyframes fadeOutLogs { to { opacity: 0; visibility: hidden; } }
+
+/* Оверлей блокировки (Финал) */
+.lockdown-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: #111; /* Перекрывает логи */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    z-index: 10;
+    /* Появляется после исчезновения логов (2.5s) */
+    animation: fadeInOverlay 0.5s forwards 2.5s;
+}
+
+@keyframes fadeInOverlay { to { opacity: 1; } }
+
+.lock-icon-large {
+    font-size: 6rem;
+    margin-bottom: 20px;
+    opacity: 0;
+    transform: translateY(-50px) scale(0.5);
+    /* Эффект падения замка с ударом (2.7s) */
+    animation: lockCrash 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards 2.7s;
+    filter: drop-shadow(0 0 10px var(--accent-green));
+}
+
+@keyframes lockCrash {
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.lock-status {
+    text-align: center;
+    color: #fff;
+    font-size: 1.1rem;
+    opacity: 0;
+    animation: fadeInStatus 1s forwards 3.2s;
+}
+
+.secure-text {
+    color: var(--accent-green);
+    font-weight: bold;
+    letter-spacing: 2px;
+    font-size: 1.3rem;
+}
+@keyframes fadeInStatus { to { opacity: 1; } }
+
+
+/* --- ПРАВАЯ КОЛОНКА (ТЕКСТ - Без изменений) --- */
+.message-block {
+    padding: 30px;
+    background: #fff;
+    border: 1px solid #000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
+}
+
+.content-text {
+    font-family: var(--font-helvetica);
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #000;
+    line-height: 1.4;
+}
+
+.content-desc {
+    font-family: var(--font-arial);
+    font-size: 1rem;
+    color: #555;
+}
+
+.divider-line {
+    width: 100%; height: 1px; background: #000; opacity: 0.1; margin: 20px 0;
+}
+
+/* Блок пожелания */
+.wish-block {
+    padding: 35px;
+    background: #fff;
+    border: 4px solid var(--accent-green);
+    box-shadow: 8px 8px 0px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex: 1.2;
+    position: relative;
+}
+
+.final-wish {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 2.2rem;
+    line-height: 1.3;
+    color: #000;
+    margin-bottom: 20px;
+}
+
+.highlight-marker {
+    background: linear-gradient(120deg, var(--accent-green) 0%, var(--accent-green) 100%);
+    display: inline; padding: 2px 6px; color: #000;
+}
+
+.wish-footer {
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: #666;
+    letter-spacing: 2px;
+}
+
+/* Декор точек */
+.corner-dot {
+    position: absolute; width: 6px; height: 6px; background: #000; border-radius: 50%;
+}
+.tl { top: -3px; left: -3px; } .tr { top: -3px; right: -3px; }
+.bl { bottom: -3px; left: -3px; } .br { bottom: -3px; right: -3px; }
+
+/* Mobile */
+@media (max-width: 900px) {
+    .editorial-grid { flex-direction: column; height: auto; }
+    .terminal-scene { height: 350px; }
+    .serif-part { font-size: 3.5rem; }
+    .final-wish { font-size: 1.8rem; }
+    .message-block, .wish-block { flex: auto; min-height: 150px; }
+}

@@ -1,66 +1,91 @@
 <link rel="stylesheet" href="styles/slide13.css">
 
 <div class="slide-inner">
-    <div class="highlight-box" style="background: var(--accent-orange); font-size: 1.8rem;">
-        6.1. MESSENGER & METADATEN
+    
+    <div class="header-tags">
+        <div class="pill-tag">Kapitel 6.1</div>
     </div>
 
-    <div class="envelope-layout">
+    <h1 class="main-title">
+        <span class="helvetica-part">MESSENGER &</span><br>
+        <span class="serif-part">Metadaten</span>
+    </h1>
+
+    <div class="editorial-grid">
         
-        <div class="visual-pane">
-            <div class="envelope-container">
-                <div class="letter-content">
-                    <div class="blur-text">
-                        Hallo Zakhar,<br>
-                        Geheimplan X:<br>
-                        Treffen um 12:00.<br>
-                        Code: 1234.
-                    </div>
-                    <div class="lock-icon">🔒 E2EE</div>
-                </div>
-
-                <div class="envelope-body">
-                    <div class="envelope-flap"></div>
+        <div class="visual-column">
+            <div class="wireframe-box scene-wrapper">
+                
+                <div class="envelope-container">
                     
-                    <div class="stamp stamp-from">VON: USER_A</div>
-                    <div class="stamp stamp-to">AN: USER_B</div>
-                    <div class="stamp stamp-time">ZEIT: 14:05</div>
-                    <div class="stamp stamp-loc">ORT: BERLIN</div>
-                    <div class="stamp stamp-dev">IP: 192.168.x.x</div>
+                    <div class="letter-content">
+                        <div class="blur-text">
+                            Geheimplan X:<br>
+                            Treffen um 12:00.<br>
+                            Code: 1234.
+                        </div>
+                        <div class="lock-icon">🔒 E2EE</div>
+                    </div>
+
+                    <div class="envelope-body">
+                        <div class="envelope-lines"></div> <div class="envelope-flap"></div>
+                        
+                        <div class="stamp stamp-from">USER: ALICE</div>
+                        <div class="stamp stamp-to">USER: BOB</div>
+                        <div class="stamp stamp-time">14:05 CET</div>
+                        <div class="stamp stamp-loc">LOC: BERLIN</div>
+                        <div class="stamp stamp-dev">IP: 192.168.0.1</div>
+                    </div>
                 </div>
-            </div>
-            
-            <div class="scene-caption">
-                <span style="background: #000; color: #fff; padding: 2px 5px;">METAPHER:</span>
-                Inhalt versiegelt, aber der Umschlag ist lesbar.
+
+                <div class="scene-caption-tag">INHALT VERSCHLÜSSELT, UMSCHLAG OFFEN</div>
+
+                <div class="corner-dot tl"></div>
+                <div class="corner-dot tr"></div>
+                <div class="corner-dot bl"></div>
+                <div class="corner-dot br"></div>
             </div>
         </div>
 
-        <div class="text-pane">
+        <div class="text-column">
             
-            <div class="info-item" style="border-color: var(--accent-green);">
-                <h3>🛡️ DAS VERSPRECHEN</h3>
-                <p>
-                    <strong>Ende-zu-Ende Verschlüsselung:</strong><br>
-                    Apps wie WhatsApp oder Signal versprechen: "Nur du und der Empfänger können das lesen."
-                </p>
-            </div>
+            <div class="wireframe-box info-block">
+                
+                <div class="text-section">
+                    <div class="card-header-row">
+                        <div class="pill-tag pill-green-border">Das Versprechen</div>
+                    </div>
+                    <p class="content-text">
+                        Ende-zu-Ende Verschlüsselung.
+                    </p>
+                    <p class="content-desc">
+                        Apps wie WhatsApp versprechen: "Nur du und der Empfänger können das lesen."
+                    </p>
+                </div>
 
-            <div class="info-item" style="border-color: var(--accent-pink); background: #fff0f5;">
-                <h3 style="background: var(--accent-pink);">⚠️ DIE REALITÄT</h3>
-                <p>
-                    Verschlüsselung schützt den Text, aber nicht die <strong>Metadaten</strong> (den "Umschlag").
-                </p>
-                <ul style="margin-top: 10px; padding-left: 20px; font-family: monospace;">
-                    <li>Wer spricht mit wem?</li>
-                    <li>Wie oft? Von wo?</li>
-                    <li>Welches Handy?</li>
-                </ul>
-                <p style="margin-top: 10px; font-weight: bold;">
-                    Daraus entstehen exakte Sozial-Profile.
-                </p>
+                <div class="divider-line"></div>
+
+                <div class="text-section">
+                    <div class="card-header-row">
+                        <div class="pill-tag pill-pink-border">Die Realität</div>
+                    </div>
+                    <p class="content-text">
+                        Schutz für Text, aber nicht für <span class="highlight-marker">Metadaten</span>.
+                    </p>
+                    <ul class="detail-list">
+                        <li><strong>Wer</strong> spricht mit wem?</li>
+                        <li><strong>Wann</strong> und wie oft?</li>
+                        <li><strong>Wo</strong> (Standortdaten)?</li>
+                    </ul>
+                    <p class="content-desc" style="margin-top: 10px; font-weight: bold;">
+                        Ergebnis: Exakte Sozial-Profile.
+                    </p>
+                </div>
+
+                <div class="corner-dot tr"></div>
             </div>
 
         </div>
+
     </div>
 </div>

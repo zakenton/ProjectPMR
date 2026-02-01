@@ -1,82 +1,76 @@
 <link rel="stylesheet" href="styles/slide11.css">
 
-<div class="slide-inner slide11-container">
-    <div class="slide11-header">
-        5.1. HACKER & DATENPANNEN
+<div class="slide-inner">
+    
+    <div class="header-tags">
+        <div class="pill-tag">Kapitel 11</div>
     </div>
 
-    <div class="funnel-flow">
+    <h1 class="main-title">
+        <span class="helvetica-part">HACKER &</span><br>
+        <span class="serif-part">Datenpannen</span>
+    </h1>
+
+    <div class="editorial-flow">
         
-        <div class="flow-card">
-            <div class="fc-header bg-yellow">1. ANGRIFF</div>
-            <div class="fc-visual">
-                <pre class="ascii-art">
-   ______
-  /      \
- |  SPRAY |==:
- |   ___  |  :
- |  | P | | . .
- |__|___|_|  .
-                </pre>
-                <div class="spray-particle sp1"></div>
-                <div class="spray-particle sp2"></div>
-                <div class="spray-particle sp3"></div>
+        <div class="wireframe-box flow-step">
+            <div class="step-badge">01. ANGRIFF</div>
+            
+            <div class="visual-mini-scene">
+                <div class="hacker-icon">🥷</div>
+                <div class="password-spray">
+                    <span class="pw-try">123456</span>
+                    <span class="pw-try">admin</span>
+                    <span class="pw-try">pass</span>
+                </div>
             </div>
-            <div class="fc-text">
-                <strong>PASSWORD SPRAYING</strong>
-                Hacker probieren <em>ein</em> Passwort (z.B. "123456") bei Tausenden Accounts gleichzeitig.
-            </div>
+
+            <h3 class="step-title">Password Spraying</h3>
+            <p class="content-text">
+                Hacker probieren <span class="highlight-marker">ein Passwort</span> bei Tausenden Accounts gleichzeitig.
+            </p>
+            
+            <div class="corner-dot tr"></div>
         </div>
 
-        <div class="flow-arrow">➜</div>
+        <div class="arrow-connector">➜</div>
 
-        <div class="flow-card">
-            <div class="fc-header bg-purple">2. DATENLECK</div>
-            <div class="fc-visual">
-                <pre class="ascii-art">
-  .-------.
- /   DATABASE   \
-|   _______   |
-|  |=======|  |
-|  |=======|  | !
- \___________/  !
-                </pre>
-                <div class="db-data" style="left: 50%;">***PASS***</div>
-                <div class="db-data" style="left: 60%; animation-delay: 0.5s;">EMAIL</div>
+        <div class="wireframe-box flow-step">
+            <div class="step-badge badge-red">02. DATENLECK</div>
+            
+            <div class="visual-mini-scene">
+                <div class="db-icon">🗄️</div>
+                <div class="leak-stream">
+                    <div class="leak-particle">@mail</div>
+                    <div class="leak-particle">$$$</div>
+                    <div class="leak-particle">123...</div>
+                </div>
             </div>
-            <div class="fc-text">
-                <strong>DIE BEUTE</strong>
-                Ganze Datenbanken werden gestohlen:
-                <ul style="padding-left: 20px; margin-top: 5px;">
-                    <li>E-Mails & Passwörter</li>
-                    <li>Adressen</li>
-                    <li>Kreditkartendaten</li>
-                </ul>
-            </div>
+
+            <h3 class="step-title">Die Beute</h3>
+            <p class="content-text">
+                Ganze Datenbanken werden gestohlen: E-Mails, Adressen, Kreditkarten.
+            </p>
+
+            <div class="corner-dot tr"></div>
         </div>
 
-        <div class="flow-arrow">➜</div>
+        <div class="arrow-connector">➜</div>
 
-        <div class="flow-card">
-            <div class="fc-header bg-dark">3. DARKNET</div>
-            <div class="fc-visual" style="background: #333; color: #fff;">
-                <pre class="ascii-art" style="color: #00FF88;">
-   _____
-  /     \
- | (o o) |
- |   ^   |
-  \ ___ /
-  _/___\_
- /       \
-                </pre>
-                <div class="money-symbol">$$$</div>
+        <div class="wireframe-box flow-step">
+            <div class="step-badge badge-dark">03. DARKNET</div>
+            
+            <div class="visual-mini-scene dark-mode-scene">
+                <div class="market-icon">🛒</div>
+                <div class="money-popup">+100$</div>
             </div>
-            <div class="fc-text">
-                <strong>VERKAUF & SCHADEN</strong>
-                Daten landen in Sammlungen ("Collections").
-                <br><br>
-                Einmal geleakt = Jahrelange Gefahr für weitere Angriffe.
-            </div>
+
+            <h3 class="step-title">Verkauf & Schaden</h3>
+            <p class="content-text">
+                Daten landen in "Collections". Einmal geleakt = <span class="highlight-marker">Jahrelange Gefahr</span>.
+            </p>
+
+            <div class="corner-dot tr"></div>
         </div>
 
     </div>

@@ -1,93 +1,86 @@
 <link rel="stylesheet" href="styles/slide7.css">
 
 <div class="slide-inner">
-    <div class="highlight-box">7. ALGORITHMEN-INTERAKTIV</div>
+    
+    <div class="header-tags">
+        <div class="pill-tag">Kapitel 7</div>
+    </div>
 
-    <div class="game-window">
-        <div class="game-top-bar">INTERAKTIVES SPIEL</div>
+    <h1 class="main-title">
+        <span class="helvetica-part">WIE LERNT</span><br>
+        <span class="serif-part">die KI?</span>
+    </h1>
+
+    <div class="editorial-grid">
         
-        <div class="game-layout">
-            <div class="game-ui">
-                <div class="info-item">
-                    <h3>SCORE</h3>
-                    <div id="score-val">00 / 10</div>
+        <div class="visual-column">
+            <div class="wireframe-box scene-wrapper">
+                
+                <div class="node-container user-node">
+                    <div class="node-label">SOURCE: YOU</div>
+                    <div class="node-icon">👤</div>
                 </div>
-                <div class="info-item">
-                    <h3>TARGET</h3>
-                    <div id="target-val">...</div>
-                </div>
-            </div>
 
-            <div class="game-canvas" id="canvas">
-                <div id="popper" class="popper-hidden">🎉</div>
-                <pre id="bot" class="game-bot">[o_o]
- /|\
-/ | \</pre>
-            </div>
-
-            <div class="game-desc">
-                <div class="info-item pink-bg">
-                    <p><strong>Klicke auf das Target!</strong></p>
-                    <p>So lernt die KI deine Interessen.</p>
+                <div class="data-stream-path">
+                    <div class="data-particle p1">❤️</div>
+                    <div class="data-particle p2">📍</div>
+                    <div class="data-particle p3">💬</div>
+                    <div class="data-particle p4">📷</div>
                 </div>
+
+                <div class="node-container ai-node">
+                    <div class="node-label">TARGET: AI</div>
+                    <div class="brain-icon">🧠</div>
+                    <div class="processing-text">LEARNING...</div>
+                </div>
+
+                <div class="corner-dot tl"></div>
+                <div class="corner-dot tr"></div>
+                <div class="corner-dot bl"></div>
+                <div class="corner-dot br"></div>
             </div>
         </div>
+
+        <div class="text-column">
+            
+            <div class="wireframe-box info-block">
+                <div class="pill-tag pill-pink-border">Der Prozess</div>
+                
+                <p class="content-text">
+                    Dein Verhalten ist der <span class="highlight-marker">Lehrplan</span>.
+                </p>
+                
+                <div class="divider-line"></div>
+
+                <div class="process-steps">
+                    
+                    <div class="step-item">
+                        <span class="step-num">01</span>
+                        <div class="step-text">
+                            <strong>Input:</strong> Massenhafte Fütterung mit Rohdaten (Deine Bilder, Chats, Klicks).
+                        </div>
+                    </div>
+
+                    <div class="step-item">
+                        <span class="step-num">02</span>
+                        <div class="step-text">
+                            <strong>Muster:</strong> Die KI erkennt statistische Zusammenhänge (z.B. "Wer X mag, kauft auch Y").
+                        </div>
+                    </div>
+
+                    <div class="step-item">
+                        <span class="step-num">03</span>
+                        <div class="step-text">
+                            <strong>Update:</strong> Das Modell passt seine Parameter an und wird mit jeder Interaktion präziser.
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="corner-dot tr"></div>
+            </div>
+
+        </div>
+
     </div>
 </div>
-
-<script>
-    // Весь код игры внутри
-    (function() {
-        const items = ['👟', '🍔', '📺', '🎮', '📱', '🍕', '🎸'];
-        let score = 0;
-        let target = '';
-        const canvas = document.getElementById('canvas');
-        const scoreEl = document.getElementById('score-val');
-        const targetEl = document.getElementById('target-val');
-        const bot = document.getElementById('bot');
-
-        function nextTarget() {
-            target = items[Math.floor(Math.random() * items.length)];
-            targetEl.innerText = target;
-        }
-
-        function spawn() {
-            const canvas = document.getElementById('canvas'); // Ищем заново
-            if (score >= 10 || !canvas) {
-                clearInterval(loop); // Останавливаем игру, если ушли со слайда
-                return;
-            }
-            
-            const el = document.createElement('div');
-            const icon = items[Math.floor(Math.random() * items.length)];
-            el.className = 'falling-item';
-            el.innerText = icon;
-            el.style.left = Math.random() * 80 + 10 + '%';
-            
-            el.onclick = () => {
-                if (icon === target) {
-                    score++;
-                    scoreEl.innerText = score.toString().padStart(2, '0') + " / 10";
-                    bot.innerText = "[^_^]\n /|\\\n/ | \\";
-                    nextTarget();
-                    if (score >= 10) {
-                        document.getElementById('popper').className = 'popper-show';
-                        bot.innerText = "[🔥_🔥]\n \\o/\n  | ";
-                    }
-                } else {
-                    bot.innerText = "[;_;]\n /|\\\n/ | \\";
-                }
-                setTimeout(() => { if(score < 10) bot.innerText = "[o_o]\n /|\\\n/ | \\"; }, 500);
-                el.remove();
-            };
-            canvas.appendChild(el);
-            setTimeout(() => el.remove(), 4000);
-        }
-
-        nextTarget();
-        const loop = setInterval(() => {
-            if (score < 10 && document.getElementById('canvas')) spawn();
-            else clearInterval(loop);
-        }, 800);
-    })();
-</script>

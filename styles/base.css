@@ -1,48 +1,74 @@
+/* 1. Импорт шрифтов - ВСЕГДА ПЕРВОЙ СТРОКОЙ */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,600&display=swap');
+
 :root {
-    --bg-color: #f0f0f0;
-    --accent-yellow: #FFFF00;
-    --accent-pink: #FF99FF;
-    --accent-green: #00FF88;
-    --text-color: #000;
-    --font-main: 'Arial Black', sans-serif;
+    /* Новая палитра (Neo-Brutalism) */
+    --bg-color: #F2F2F2;          
+    --accent-purple: #A6A6FF;     
+    --accent-yellow: #FFFF00;     
+    --accent-pink: #FFC0CB;
+    --accent-green: #00FF88; /* Оставил для совместимости */
+    
+    --text-color: #111;
+    
+    /* Шрифты */
+    --font-serif: 'Playfair Display', serif;
+    --font-sans: 'Inter', sans-serif;
+    --font-helvetica: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --font-arial: Arial, sans-serif;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
 body {
     background-color: var(--bg-color);
-    font-family: var(--font-main);
+    font-family: var(--font-sans);
     overflow: hidden;
     height: 100vh;
     color: var(--text-color);
 }
 
-/* UI Elements */
+/* UI Elements - Обновленный дизайн */
 #progress-bar {
-    position: fixed; top: 0; left: 0; height: 8px;
-    background-color: var(--accent-pink);
+    position: fixed; top: 0; left: 0; height: 6px;
+    background-color: var(--accent-purple);
     width: 0%; z-index: 1000; transition: width 0.3s ease;
 }
 
-.pixel-box {
-    position: fixed; border: 3px solid #000; padding: 10px;
-    font-family: monospace; font-weight: bold; background: var(--accent-pink);
-    box-shadow: 4px 4px 0px #000; z-index: 100;
+/* Таймер в стиле "Pill" */
+.timer-box {
+    position: fixed; 
+    top: 25px; right: 25px;       /* Чуть дальше от края */
+    padding: 10px 30px;           /* Больше "воздуха" внутри */
+    border: 1px solid #000; 
+    border-radius: 50px; 
+    font-family: var(--font-sans); 
+    font-size: 1.5rem;            /* Крупный шрифт (было меньше) */
+    font-weight: 600;             /* Жирное начертание */
+    background: #fff;
+    box-shadow: 4px 4px 0px rgba(0,0,0,0.1); /* Легкая тень для объема */
+    z-index: 100;
+    min-width: 140px;             /* Шире, чтобы цифры не скакали */
+    text-align: center;
+    letter-spacing: 1px;          /* Чуть разрядим цифры для читаемости */
 }
-.timer-box { top: 20px; right: 20px; min-width: 90px; text-align: center; font-size: 1.2rem; }
 
 .nav-controls {
     position: fixed; bottom: 25px; right: 25px;
     display: flex; gap: 12px; z-index: 1001;
 }
 
+/* Кнопки навигации - Круглые и аккуратные */
 .nav-btn {
-    width: 65px; height: 65px; background: var(--accent-yellow);
-    border: 4px solid #000; box-shadow: 4px 4px 0px #000;
-    font-size: 1.8rem; cursor: pointer; font-family: var(--font-main);
+    width: 60px; height: 60px; 
+    background: var(--accent-yellow);
+    border: 1px solid #000; 
+    border-radius: 50%; /* Круг */
+    font-size: 1.5rem; cursor: pointer; 
     display: flex; align-items: center; justify-content: center;
+    transition: transform 0.1s;
 }
-.nav-btn:active { transform: translate(3px, 3px); box-shadow: none; }
+.nav-btn:active { transform: scale(0.95); }
 
 /* Viewport Logic */
 #slide-viewport {
@@ -56,27 +82,46 @@ body {
     transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-/* Slide Typography & Layout - Общие стили для всех слайдов */
-.highlight-box {
-    background: var(--accent-yellow); display: inline-block;
-    padding: 10px 20px; border: 4px solid #000;
-    box-shadow: 6px 6px 0px #000; font-size: clamp(1.5rem, 5vw, 3.5rem);
-    margin-bottom: 15px; text-transform: uppercase;
+/* Общие стили для контента (Wireframe box) */
+.wireframe-box {
+    border: 1px solid #000;
+    background: #fff;
+    padding: 25px;
+    position: relative;
 }
-.sub-highlight { background: var(--accent-green); padding: 5px 15px; border: 3px solid #000; display: inline-block; }
 
-/* Grid Layout for content */
-.slide-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: center; }
-.info-item { background: #fff; border: 3px solid #000; padding: 15px; margin-bottom: 15px; box-shadow: 4px 4px 0px #000; }
-.info-item h3 { background: var(--accent-green); display: inline-block; padding: 0 5px; margin-bottom: 8px; font-size: 1rem; }
+/* Декоративные точки по углам */
+.wireframe-box::before { 
+    content: ''; position: absolute; top: -4px; left: -4px; 
+    width: 8px; height: 8px; background: #000; border-radius: 50%; 
+}
+.wireframe-box::after { 
+    content: ''; position: absolute; top: -4px; right: -4px; 
+    width: 8px; height: 8px; background: #000; border-radius: 50%; 
+}
 
-/* ASCII */
-.choice-scene { background: #fff; border: 4px solid #000; padding: 20px; text-align: center; }
-.ascii-human { font-family: monospace; font-size: 2rem; line-height: 1.1; margin: 15px 0; }
+/* Таблетки (Tags) */
+.pill-tag {
+    display: inline-block;
+    background: var(--accent-purple);
+    color: #000;
+    padding: 6px 20px;
+    border-radius: 50px;
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    font-weight: 600;
+    border: 1px solid #000;
+    margin-right: 10px;
+}
+.pill-yellow { background: var(--accent-yellow); }
 
-/* Mobile */
+/* Адаптация */
 @media (max-width: 768px) {
-    .slide-grid { grid-template-columns: 1fr; }
     #slide-viewport { padding: 15% 5% 25% 5%; }
-    .timer-box { top: 15px; right: 15px; font-size: 0.9rem; }
+    .timer-box { 
+        top: 15px; right: 15px; 
+        font-size: 1.1rem; 
+        padding: 8px 20px;
+        min-width: 100px;
+    }
 }

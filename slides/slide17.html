@@ -1,69 +1,83 @@
 <link rel="stylesheet" href="styles/slide17.css">
 
 <div class="slide-inner">
-    <div class="highlight-box" style="background: var(--accent-pink); font-size: 1.8rem;">
-        7.3. VERSCHLÜSSELUNG
+    
+    <div class="header-tags">
+        <div class="pill-tag">Kapitel 7.3</div>
     </div>
 
-    <div class="comparison-container">
+    <h1 class="main-title">
+        <span class="helvetica-part">DIE</span><br>
+        <span class="serif-part">Verschlüsselung</span>
+    </h1>
+
+    <div class="comparison-grid">
         
-        <div class="comp-column col-tunnel">
-            <div class="visual-header" style="background: #000; color: var(--accent-green);">
-                🔒 E2EE (SIGNAL, THREEMA)
+        <div class="wireframe-box comp-card unsafe-zone">
+            
+            <div class="card-status-bar">
+                <span class="status-label">STANDARD E-MAIL</span>
+                <span class="status-icon">🔓 OPEN</span>
+            </div>
+
+            <div class="visual-area">
+                <div class="postcard-wrapper">
+                    <div class="postcard-text">
+                        Hello Max,<br>
+                        Password: 1234
+                    </div>
+                    <div class="eye-watcher e1">👁️</div>
+                    <div class="eye-watcher e2">👁️</div>
+                </div>
+            </div>
+
+            <div class="card-content">
+                <h3 class="method-title">Die Postkarte</h3>
+                <p class="content-text">
+                    Wie eine Postkarte ohne Umschlag. Jeder Server ("Postbote") kann mitlesen.
+                </p>
+                <div class="verdict-badge badge-unsafe">
+                    ⚠️ UNSICHER
+                </div>
             </div>
             
-            <div class="scene-tunnel">
-                <div class="tunnel-tube">
-                    <div class="tunnel-stream">
-                        >>> SECRET >>> DATA >>> [LOCKED] >>>
-                    </div>
-                </div>
-                <pre class="ascii-lock">
-   .---.
-  /     \
- |  (o)  |
-  \  |  /
-   '-|-'
-                </pre>
-            </div>
-
-            <div class="desc-box">
-                <h3>DER TUNNEL</h3>
-                <p>
-                    <strong>Ende-zu-Ende:</strong><br>
-                    Nur Sender und Empfänger haben den Schlüssel. Nicht einmal die App (WhatsApp/Signal) kann mitlesen.
-                </p>
-                <div class="badge-safe">✅ EMPFOHLEN</div>
-            </div>
+            <div class="corner-dot tr"></div>
         </div>
 
-        <div class="vs-badge">VS</div>
+        <div class="vs-divider">
+            <span class="vs-text">VS</span>
+        </div>
 
-        <div class="comp-column col-postcard">
-            <div class="visual-header" style="background: #fff; color: #000; border-bottom: 3px solid #000;">
-                ✉️ STANDARD E-MAIL
+        <div class="wireframe-box comp-card safe-zone">
+            
+            <div class="card-status-bar">
+                <span class="status-label">SIGNAL / THREEMA</span>
+                <span class="status-icon">🔒 SECURE</span>
             </div>
 
-            <div class="scene-postcard">
-                <div class="postcard-body">
-                    <div class="stamp">POST</div>
-                    <div class="lines">
-                        <span class="handwriting">Hallo Max!</span><br>
-                        <span class="handwriting">Code: 1234</span><br>
-                        <span class="handwriting">Bis bald!</span>
+            <div class="visual-area dark-mode">
+                <div class="secure-tunnel">
+                    <div class="data-stream">
+                        >>> ENCRYPTED >>>
                     </div>
-                    <div class="peeping-eye">👁️</div>
+                    <div class="lock-shield">
+                        <div class="shield-body"></div>
+                        <div class="shield-keyhole"></div>
+                    </div>
                 </div>
             </div>
 
-            <div class="desc-box">
-                <h3>DIE POSTKARTE</h3>
-                <p>
-                    <strong>Transport-Ebene:</strong><br>
-                    Wie eine Postkarte ohne Umschlag. Jeder Server ("Postbote") auf dem Weg kann den Inhalt lesen.
+            <div class="card-content">
+                <h3 class="method-title">Der Tunnel</h3>
+                <p class="content-text">
+                    <strong>Ende-zu-Ende:</strong> Nur Sender & Empfänger haben den Schlüssel. Selbst die App sieht nichts.
                 </p>
-                <div class="badge-unsafe">⚠️ UNSICHER</div>
+                <div class="verdict-badge badge-safe">
+                    ✅ EMPFOHLEN
+                </div>
             </div>
+
+            <div class="corner-dot tr"></div>
         </div>
 
     </div>

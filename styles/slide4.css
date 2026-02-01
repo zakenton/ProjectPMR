@@ -1,116 +1,201 @@
-/* Стили для Слайда 4: Цифровая Тень с данными */
-
-.human-container {
-    position: relative;
-    width: 300px;
-    height: 400px;
+/* --- СЕТКА --- */
+.editorial-grid {
     display: flex;
-    justify-content: center;
-    align-items: flex-end;
+    gap: 40px;
+    margin-top: 20px;
+    align-items: stretch;
+    height: 60vh;
 }
 
-/* ASCII Человек (Светлый) */
-.human-figure {
-    font-family: monospace;
-    font-size: 3rem;
-    line-height: 1;
-    color: #000;
-    background: #fff;
-    border: 4px solid #000;
-    padding: 10px;
-    position: relative;
-    z-index: 2; /* Поверх тени */
-    box-shadow: 10px 10px 0px rgba(0,0,0,0.2);
-}
-
-/* Контейнер Тени */
-.digital-shadow-container {
-    position: absolute;
-    top: 50px; /* Смещение относительно человека */
-    left: 50px;
-    width: 100%;
-    height: 100%;
-    background: #000; /* Черный фон тени */
-    z-index: 1; /* За человеком */
-    opacity: 0; /* Сначала невидима */
-    transform: skewX(-20deg) scaleY(1.2); /* Искажаем форму под тень */
-    overflow: hidden;
-    border: 4px solid var(--accent-green);
-    box-shadow: 10px 10px 0px var(--accent-green);
-
-    /* Анимация появления тени */
-    animation: shadowAppear 1s ease-out forwards 0.5s;
-}
-
-/* Текст внутри тени */
-.data-stream {
-    font-family: monospace;
-    color: var(--accent-green);
-    font-size: 1.2rem;
-    white-space: pre; /* Сохраняем переносы строк */
-    position: absolute;
-    top: 0;
-    left: 0;
-    padding: 20px;
-    
-    /* Анимация смены текста (бегущая строка вверх) */
-    animation: scrollData 10s linear infinite;
-}
-
-@keyframes shadowAppear {
-    to { opacity: 1; top: 80px; left: 80px; /* Конечное положение */ }
-}
-
-@keyframes scrollData {
-    0% { transform: translateY(0); }
-    100% { transform: translateY(-50%); } /* Двигаем текст вверх */
-}
-
-/* Трехколоночный макет */
-.info-grid-3 {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 25px;
-    width: 100%;
-    margin-top: 30px;
-}
-
-.info-card {
-    background: #fff;
-    border: 4px solid #000;
-    padding: 20px;
-    box-shadow: 8px 8px 0px #000;
+.visual-column {
+    flex: 1.2;
     display: flex;
     flex-direction: column;
-    height: 100%;
 }
 
-/* Заголовки карточек */
-.card-title {
-    font-size: 1.3rem;
+.text-column {
+    flex: 0.8;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* --- ЗАГОЛОВОК --- */
+.main-title {
+    margin-top: 20px;
+    margin-bottom: 30px;
+    line-height: 1;
+}
+
+.helvetica-part {
+    font-family: var(--font-helvetica);
     font-weight: bold;
+    font-size: 2.5rem;
     text-transform: uppercase;
-    margin-bottom: 15px;
-    padding: 5px 10px;
-    border: 3px solid #000;
+    letter-spacing: 2px;
+}
+
+.serif-part {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 5rem;
+    color: #000;
+}
+
+/* --- ВИЗУАЛЬНАЯ СЦЕНА --- */
+.scene-wrapper {
+    flex: 1;
+    background: #f4f4f4;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+/* Карточка человека (ИСПРАВЛЕНО) */
+.human-card {
+    background: transparent; /* Полностью прозрачный фон */
+    border: 1px solid #000;
+    padding: 10px 25px;      /* Компактные отступы */
+    z-index: 10;
+    position: relative;
+    box-shadow: 3px 3px 0px rgba(0,0,0,0.1);
+    /* Убрали backdrop-filter, чтобы не размывать текст сзади */
+}
+
+.card-label {
+    font-family: var(--font-helvetica);
+    font-size: 0.7rem;
+    font-weight: bold;
+    color: #000;
+    text-align: center;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+    /* Белая обводка для читаемости текста самого лейбла */
+    text-shadow: 0px 0px 4px #fff, 0px 0px 4px #fff;
+}
+
+.ascii-art {
+    font-family: monospace;
+    font-size: 2.5rem;
+    line-height: 1.1;
+    font-weight: bold;
+    color: #000;
+    /* Белая обводка для ASCII, чтобы он не терялся */
+    text-shadow: 1px 1px 0 #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff;
+}
+
+/* Карточка тени (Темная/Матричная) */
+.shadow-card {
+    position: absolute;
+    top: 55%; left: 55%;
+    transform: translate(-50%, -50%) skewX(-20deg) scaleY(1.1);
+    width: 220px;
+    height: 300px;
+    background: #111;
+    border: 1px solid var(--accent-green);
+    z-index: 1; /* Под человеком */
+    overflow: hidden;
+    opacity: 0;
+    animation: shadowReveal 1s ease-out forwards 0.5s;
+    box-shadow: 5px 5px 0px var(--accent-green);
+}
+
+@keyframes shadowReveal {
+    from { opacity: 0; top: 50%; left: 50%; }
+    to { opacity: 0.9; top: 55%; left: 58%; }
+}
+
+/* Бегущие данные внутри тени */
+.scrolling-data {
+    font-family: 'Courier New', monospace;
+    color: var(--accent-green);
+    font-size: 0.9rem;
+    line-height: 1.4;
+    white-space: pre;
+    padding: 10px;
+    position: absolute;
+    top: 0; left: 0;
+    animation: scrollText 8s linear infinite;
+}
+
+@keyframes scrollText {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-50%); }
+}
+
+
+/* --- ТЕКСТОВЫЙ БЛОК --- */
+.info-block {
+    padding: 40px;
+    background: #fff;
+    border: 1px solid #000;
+    position: relative;
+}
+
+.block-subtitle {
+    font-family: var(--font-helvetica);
+    font-size: 1.2rem;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    color: #666;
+    text-transform: uppercase;
+}
+
+.content-text {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 2.2rem;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    color: #000;
+}
+
+.content-desc {
+    font-family: var(--font-arial);
+    font-size: 1.2rem;
+    line-height: 1.5;
+    color: #333;
+}
+
+/* Таблетка */
+.pill-green-border {
+    background: #fff;
+    border: 1px solid var(--accent-green);
+    color: #000;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    padding: 5px 15px;
+    box-shadow: 3px 3px 0px var(--accent-green);
     display: inline-block;
 }
 
-/* Цветовые акценты для карточек */
-.card-pink .card-title { background: var(--accent-pink); }
-.card-yellow .card-title { background: var(--accent-yellow); }
-.card-green .card-title { background: var(--accent-green); }
-.card-blue .card-title { background: #3366FF; color: #fff; }
-.card-orange .card-title { background: #FF6600; color: #fff;}
-
-.card-text {
-    font-size: 1rem;
-    line-height: 1.4;
-    flex-grow: 1; /* Текст занимает оставшееся место */
+.highlight-marker {
+    background: linear-gradient(120deg, var(--accent-green) 0%, var(--accent-green) 100%);
+    background-size: 100% 30%;
+    background-repeat: no-repeat;
+    background-position: 0 85%;
+    display: inline;
 }
 
-/* Мобильная адаптация */
+/* Декор точек */
+.corner-dot {
+    position: absolute;
+    width: 6px; height: 6px;
+    background: #000;
+    border-radius: 50%;
+}
+.tl { top: -3px; left: -3px; }
+.tr { top: -3px; right: -3px; }
+.bl { bottom: -3px; left: -3px; }
+.br { bottom: -3px; right: -3px; }
+
+/* Mobile */
 @media (max-width: 900px) {
-    .info-grid-3 { grid-template-columns: 1fr; } /* В одну колонку на телефоне */
-    .human-container { transform: scale(0.7); } /* Уменьшаем человека на телефоне */
+    .editorial-grid { flex-direction: column; height: auto; }
+    .shadow-card { transform: translate(-50%, -50%) skewX(0) scaleY(1); width: 90%; top: 60%; left: 50%; }
+    .content-text { font-size: 1.8rem; }
+    .serif-part { font-size: 3.5rem; }
 }

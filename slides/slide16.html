@@ -1,86 +1,93 @@
 <link rel="stylesheet" href="styles/slide16.css">
 
 <div class="slide-inner">
-    <div class="highlight-box" style="background: #000; color: var(--accent-green); font-size: 1.8rem; border-color: var(--accent-green);">
-        7.2. TECHNISCHE WERKZEUGE
-    </div>
     
-    <div class="sub-highlight" style="margin-bottom: 25px; background: #fff;">
-        DEIN DIGITALES ARSENAL
+    <div class="header-tags">
+        <div class="pill-tag">Kapitel 7.2</div>
     </div>
 
-    <div class="inventory-grid">
+    <h1 class="main-title">
+        <span class="helvetica-part">DIGITALE</span><br>
+        <span class="serif-part">Selbstverteidigung</span>
+    </h1>
+
+    <div class="tools-grid">
         
-        <div class="inv-card card-green">
-            <div class="inv-header">
-                <span class="lvl">LVL 1</span>
-                <span class="name">PW MANAGER</span>
+        <div class="wireframe-box tool-card">
+            <div class="card-top-bar">
+                <span class="tool-id">01 // ISOLATION</span>
             </div>
-            <div class="inv-icon">
-                <pre>
-  .---.
- /     \
-|  (o)  |
- \  |  /
-  '-|-'
-  0=|=0
-    |
-   0-0
-                </pre>
-            </div>
-            <div class="inv-stats">
-                <p><strong>TOOLS:</strong> Bitwarden, KeePass</p>
-                <p><strong>EFFECT:</strong> Nur 1 Master-Passwort merken.</p>
-                <div class="pro-tip">
-                    <span class="tip-label">TIPP:</span>
-                    Nutze es für ALLE Konten. Nie wieder "123456"!
+            
+            <div class="visual-stage">
+                <div class="anim-vault">
+                    <div class="vault-ring"></div>
+                    <div class="vault-core"></div>
                 </div>
             </div>
+
+            <div class="text-content">
+                <h3 class="tool-name">Passwort-Tresor</h3>
+                <p class="tool-desc">
+                    Schluss mit "123456". Der Tresor generiert und speichert komplexe Passwörter für dich.
+                </p>
+                <div class="spec-box">
+                    <div class="spec-row"><strong>REGEL:</strong> 1 Master-Passwort merken.</div>
+                    <div class="spec-row"><strong>TOOLS:</strong> Bitwarden, KeePassXC</div>
+                </div>
+            </div>
+            <div class="corner-dot tr"></div>
         </div>
 
-        <div class="inv-card card-yellow">
-            <div class="inv-header">
-                <span class="lvl">LVL 2</span>
-                <span class="name">2-FA AUTH</span>
+        <div class="wireframe-box tool-card">
+            <div class="card-top-bar">
+                <span class="tool-id">02 // VERIFIKATION</span>
             </div>
-            <div class="inv-icon">
-                <pre class="code-anim">
-[ CODE ]
- ****** 392 018
- ****** [ SECURE ]
-                </pre>
-            </div>
-            <div class="inv-stats">
-                <p><strong>TOOLS:</strong> Google Auth, YubiKey</p>
-                <p><strong>EFFECT:</strong> Passwort geklaut? Egal. Ohne Code kein Login.</p>
-                <div class="pro-tip">
-                    <span class="tip-label">TIPP:</span>
-                    Pflicht für E-Mail, Insta & Banking!
+
+            <div class="visual-stage">
+                <div class="anim-shield">
+                    <div class="shield-circle c1"></div>
+                    <div class="shield-circle c2"></div>
+                    <div class="shield-icon">✓</div>
                 </div>
             </div>
+
+            <div class="text-content">
+                <h3 class="tool-name">2-Faktor-Auth (2FA)</h3>
+                <p class="tool-desc">
+                    Doppelter Boden. Selbst wenn dein Passwort gestohlen wird, fehlt dem Hacker der zweite Schlüssel.
+                </p>
+                <div class="spec-box">
+                    <div class="spec-row"><strong>REGEL:</strong> Keine SMS (unsicher)!</div>
+                    <div class="spec-row"><strong>TOOLS:</strong> Aegis, Raivo, YubiKey</div>
+                </div>
+            </div>
+            <div class="corner-dot tr"></div>
         </div>
 
-        <div class="inv-card card-blue">
-            <div class="inv-header">
-                <span class="lvl">LVL 3</span>
-                <span class="name">VPN TUNNEL</span>
+        <div class="wireframe-box tool-card">
+            <div class="card-top-bar">
+                <span class="tool-id">03 // TARNKAPPE</span>
             </div>
-            <div class="inv-icon">
-                <pre>
- ( YOU )
-   | |
- [=====]
-   | |
- ( ? ? )
-                </pre>
-            </div>
-            <div class="inv-stats">
-                <p><strong>EFFECT:</strong> Verschlüsselter Tunnel. Versteckt IP im Café-WLAN.</p>
-                <div class="pro-tip">
-                    <span class="tip-label">ACHTUNG:</span>
-                    Vertraue nur guten Anbietern. VPN sieht alles!
+
+            <div class="visual-stage">
+                <div class="anim-tunnel">
+                    <div class="tunnel-wave w1"></div>
+                    <div class="tunnel-wave w2"></div>
+                    <div class="tunnel-wave w3"></div>
                 </div>
             </div>
+
+            <div class="text-content">
+                <h3 class="tool-name">VPN & Tracking-Blocker</h3>
+                <p class="tool-desc">
+                    Verschlüsselt deinen Datenverkehr und macht dich im öffentlichen WLAN unsichtbar.
+                </p>
+                <div class="spec-box">
+                    <div class="spec-row"><strong>REGEL:</strong> Niemals "Free VPN".</div>
+                    <div class="spec-row"><strong>TOOLS:</strong> ProtonVPN, uBlock Origin</div>
+                </div>
+            </div>
+            <div class="corner-dot tr"></div>
         </div>
 
     </div>
